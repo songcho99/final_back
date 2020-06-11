@@ -16,9 +16,9 @@ local.properties
 .recommenders
 
 #target
-target/
+
 # properties
-*.properties
+#*.properties
 
 # External tool builders
 .externalToolBuilders/

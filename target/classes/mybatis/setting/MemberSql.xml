@@ -28,14 +28,34 @@
 			and ${field} like '%'||#{search}||'%'
 		</if>
 	</select>
-	
 	<!-- 회원 id 있는지 체크 -->
    <select id="checkIdOfMember" parameterType="String" resultType="int">
       select count(*) from member where member_id=#{member_id}
    </select>
-   
    <!-- 로그인 - 아이디, 비번 맞는지 체크 -->
    <select id="checkPassOfMember" parameterType="HashMap" resultType="int">
       select count(*) from member where member_id=#{member_id} and member_password=#{member_password}
    </select>
+   <!-- 관리자  -->
+	<select id="adminOfMember" resultType="cdto">
+		select * from member where member_name='관리자'
+	</select>
+	<!-- 아이디 찾기 위한 정보 확인 -->
+	<select id="selectOfCheckId" parameterType="HashMap" resultType="int">
+		select count(*) from member 
+		where member_name=#{member_name} and member_email=#{member_email} and member_phone=#{member_phone} 
+	</select>
+	<!-- 해당 이메일에 맞는 회원 아이디 -->
+	<select id="idOfMember" parameterType="String" resultType="String">
+		select member_id from member where member_email=#{member_email}
+	</select>
+	<!-- 비밀번호 찾기 위한 정보 확인 -->
+	<select id="selectOfCheck" parameterType="HashMap" resultType="int">
+		select count(*) from member 
+		where member_name=#{member_name} and member_id=#{member_id} and member_phone=#{member_phone} 
+	</select>
+	<!-- 비밀번호 재설정 -->
+	<update id="updatepasswordOfMember" parameterType="HashMap">
+		update member set member_password=#{member_password} where member_id=#{member_id}
+	</update>
 </mapper>

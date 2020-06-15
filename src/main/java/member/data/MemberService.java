@@ -67,5 +67,35 @@ public class MemberService implements MemberServiceInter {
 		return dao.selectNameMember(member_id);
 	}
 
+	@Override
+	public MemberDto admin() {
+		// TODO Auto-generated method stub
+		return dao.admin();
+	}
+
+	@Override
+	public int selectCountId(String member_name, String member_email, String member_phone) {
+		// TODO Auto-generated method stub
+		return dao.selectCountId(member_name, member_email, member_phone);
+	}
+
+	@Override
+	public String selectId(String member_email) {
+		// TODO Auto-generated method stub
+		return dao.selectId(member_email);
+	}
+
+	@Override
+	public int selectCount(String member_name, String member_id, String member_phone) {
+		// TODO Auto-generated method stub
+		return dao.selectCount(member_name, member_id, member_phone);
+	}
+
+	@Override
+	public void updatePassword(String member_id, String member_password) {
+		// TODO Auto-generated method stub
+		dao.updatePassword(member_id, member_password);
+	}
+
 
 }

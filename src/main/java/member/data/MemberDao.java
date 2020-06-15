@@ -27,7 +27,7 @@ public class MemberDao extends SqlSessionDaoSupport implements MemberDaoInter{
 		// TODO Auto-generated method stub
 		getSqlSession().delete("deleteOfMember",dto);
 	}
-
+	//아이디 값 가져오기
 	@Override
 	public MemberDto selectOneMember(int membernum) {
 		// TODO Auto-generated method stub
@@ -41,6 +41,27 @@ public class MemberDao extends SqlSessionDaoSupport implements MemberDaoInter{
 		map.put("field",field);
 		map.put("searchtxt",searchtxt);
 		return getSqlSession().selectOne("SearchOfMember",map);
+	}
+	
+	@Override
+	public int checkid(String member_id) {
+		// TODO Auto-generated method stub
+		return getSqlSession().selectOne("checkIdOfMember",member_id);
+	}
+
+	@Override
+	public int isCheckPass(String member_id, String member_password) {
+		// TODO Auto-generated method stub
+		HashMap<String, String> map =new HashMap<String, String>();
+		map.put("member_id", member_id);
+		map.put("member_password",member_password);
+		return getSqlSession().selectOne("checkPassOfMember",map);
+	}
+
+	@Override
+	public MemberDto selectNameMember(String member_id) {
+		// TODO Auto-generated method stub
+		return getSqlSession().selectOne("SelectNameofMemeber",member_id);
 	}
 
 }

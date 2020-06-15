@@ -15,10 +15,24 @@
 		select * from member where member_num = #{member_num}
 	</select>
 	
+	<select id="SelectNameofMemeber" parameterType="String" resultType="memberdto">
+		select * from member where member_id = #{member_id}
+	</select>
+	
 	<select id="SearchOfMember" parameterType="HashMap" resultType="memberdto">
 		select * from member where 1=1 
 		<if test="search!=null and search!=''">
 			and ${field} like '%'||#{search}||'%'
 		</if>
 	</select>
+	
+	<!-- id 있는지 체크 -->
+   <select id="checkIdOfMember" parameterType="String" resultType="int">
+      select count(*) from member where member_id=#{member_id}
+   </select>
+   
+   <!-- 로그인 - 아이디, 비번 맞는지 체크 -->
+   <select id="checkPassOfMember" parameterType="HashMap" resultType="int">
+      select count(*) from member where member_id=#{member_id} and member_password=#{member_password}
+   </select>
 </mapper>

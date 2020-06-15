@@ -7,5 +7,9 @@ public interface MemberServiceInter {
 	
 	public MemberDto selectOneMember(int membernum);
 	public MemberDto searchMember(String field, String searchtxt);
+	public MemberDto selectNameMember(String member_id);
+	
+	public boolean checkId(String member_id);
+	public boolean isCheckPass(String member_id,String member_password);
 
 }

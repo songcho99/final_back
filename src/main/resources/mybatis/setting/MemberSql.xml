@@ -37,7 +37,7 @@
       select count(*) from member where member_id=#{member_id} and member_password=#{member_password}
    </select>
    <!-- 관리자  -->
-	<select id="adminOfMember" resultType="cdto">
+	<select id="adminOfMember" resultType="memberdto">
 		select * from member where member_name='관리자'
 	</select>
 	<!-- 아이디 찾기 위한 정보 확인 -->

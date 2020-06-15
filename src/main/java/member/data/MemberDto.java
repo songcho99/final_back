@@ -1,5 +1,7 @@
 package member.data;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class MemberDto {
 	private int member_num;
 	private String member_name;
@@ -11,6 +13,8 @@ public class MemberDto {
 	private String member_detailaddr;
 	private String member_type;
 	private String member_profile;
+	
+	
 	
 	public int getMember_num() {
 		return member_num;

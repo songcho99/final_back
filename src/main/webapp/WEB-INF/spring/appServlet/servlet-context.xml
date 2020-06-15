@@ -22,7 +22,7 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
-	<context:component-scan base-package="com.spring.project,*.data" />
+	<context:component-scan base-package="com.spring.project,*.data,upload.util" />
 	
 	<!-- file upload setting -->
 	<beans:bean id="multipartResolver"

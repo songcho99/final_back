@@ -63,13 +63,6 @@ public class MemberDao extends SqlSessionDaoSupport implements MemberDaoInter{
 		// TODO Auto-generated method stub
 		return getSqlSession().selectOne("SelectNameofMemeber",member_id);
 	}
-
-	@Override
-	public int idCheckMember(String member_id) {
-		// TODO Auto-generated method stub
-		return getSqlSession().selectOne("idCheckMember",member_id);
-	}
-	
 	
 
 }

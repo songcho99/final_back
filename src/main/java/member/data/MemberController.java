@@ -34,7 +34,7 @@ public class MemberController {
 		{
 		
 		System.out.println("id:"+member_id+",pw:"+member_password);
-		System.out.println("react>>login ����");
+		System.out.println("react>>login ");
 		
 		map.put("member_name",service.selectNameMember(member_id).getMember_name());
 		map.put("success","success");
@@ -54,7 +54,7 @@ public class MemberController {
 	{
 		System.out.println("react >> idcheck"+","+id);
 		
-		int idcheck = service.idCheckMember(id);
+		int idcheck = service.checkId2(id);
 		System.out.println("idcheck:"+idcheck);
 		
 		return idcheck;

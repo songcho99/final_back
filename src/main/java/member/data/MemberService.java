@@ -42,10 +42,17 @@ public class MemberService implements MemberServiceInter {
 		return dao.searchMember(field, searchtxt);
 	}
 	
+	//성현
 	@Override
 	public boolean checkId(String member_id) {
 		// TODO Auto-generated method stub
 		return dao.checkid(member_id)==0?false:true;
+	}
+	//용우
+	@Override
+	public int checkId2(String member_id) {
+		// TODO Auto-generated method stub
+		return dao.checkid(member_id);
 	}
 
 	@Override
@@ -60,10 +67,5 @@ public class MemberService implements MemberServiceInter {
 		return dao.selectNameMember(member_id);
 	}
 
-	@Override
-	public int idCheckMember(String member_id) {
-		// TODO Auto-generated method stub
-		return dao.idCheckMember(member_id);
-	}
 
 }

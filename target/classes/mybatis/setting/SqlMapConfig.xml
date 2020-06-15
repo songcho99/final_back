@@ -21,7 +21,7 @@
 	</typeAliases>
 	<mappers>
 		<mapper resource="mybatis/setting/TestSql.xml"/>
-		<mapper resource="mybatis/setting/MemberSql.xml"/>
+		 <mapper resource="mybatis/setting/MemberSql.xml"/>
 		<mapper resource="mybatis/setting/BooksSql.xml"/>
 		<mapper resource="mybatis/setting/ClassDataSql.xml"/>
 		<mapper resource="mybatis/setting/FilesSql.xml"/>
@@ -33,8 +33,8 @@
 		<mapper resource="mybatis/setting/ProcessClassSql.xml"/>
 		<mapper resource="mybatis/setting/ReplySql.xml"/>
 		<mapper resource="mybatis/setting/StudySql.xml"/>
-		<mapper resource="mybatis/setting/StudyApplySql.xml"/>
+		<mapper resource="mybatis/setting/StudyApplySql.xml"/><!--  -->
 		<mapper resource="mybatis/setting/StudyFeedSql.xml"/>
-		<mapper resource="mybatis/setting/StudyGroupSql.xml"/>
+		<mapper resource="mybatis/setting/StudyGroupSql.xml"/> 
 	</mappers>
 </configuration>

@@ -21,4 +21,8 @@
 			and ${field} like '%'||#{search}||'%'
 		</if>
 	</select>
+	
+	<select id="idCheckMember" parameterType="String" resultType="int">
+		select count(*) from member where member_id = #{member_id}
+	</select>
 </mapper>

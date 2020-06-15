@@ -8,4 +8,5 @@ public interface MemberServiceInter {
 	public MemberDto selectOneMember(int membernum);
 	public MemberDto searchMember(String field, String searchtxt);
 
+	public int idCheckMember(String member_id);
 }

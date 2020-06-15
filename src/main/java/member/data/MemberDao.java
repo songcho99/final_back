@@ -43,4 +43,12 @@ public class MemberDao extends SqlSessionDaoSupport implements MemberDaoInter{
 		return getSqlSession().selectOne("SearchOfMember",map);
 	}
 
+	@Override
+	public int idCheckMember(String member_id) {
+		// TODO Auto-generated method stub
+		return getSqlSession().selectOne("idCheckMember",member_id);
+	}
+	
+	
+
 }

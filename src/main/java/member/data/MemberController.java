@@ -5,9 +5,13 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.mail.MessagingException;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,6 +26,8 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import upload.util.ManageFileClass;
 
+import sms.data.ExampleSend;
+
 @RestController
 @CrossOrigin
 public class MemberController {
@@ -29,7 +35,11 @@ public class MemberController {
 	@Autowired
 	private MemberService service;
 	
-	@GetMapping("/login/loginck")
+	@Autowired
+	private JavaMailSender mailsender;
+	
+	//�α���
+	@PostMapping("/login/loginck")
 	public Map<String,String> loginck(@RequestParam String member_id, @RequestParam String member_password
 			,@RequestParam(required=false) String idsave,HttpSession session)
 	{
@@ -64,6 +74,7 @@ public class MemberController {
 		return idcheck;
 	}
 	
+	//ȸ�� �߰�
 	@PostMapping("/member/insert")
 	public void insertMember(@RequestParam String member_name,
 			@RequestParam String member_id,
@@ -89,7 +100,89 @@ public class MemberController {
 		service.insertMember(memberdto);
 	}
 	
-
+	//���� �߰� �κ�
+	//���̵� ã�� ���� ���� Ȯ��
+	@PostMapping("/check/checkId")
+	public int checkId(@RequestParam String member_name, String member_email, String member_phone)
+	{
+		int cnt=0;
+		System.out.println("react>>checkId");
+		System.out.println(member_name);
+		System.out.println(member_email);
+		System.out.println(member_phone);
+		cnt=service.selectCountId(member_name, member_email, member_phone);
+		System.out.println(cnt);
+		return cnt;
+	}
 	
+	//��й�ȣ �缳���� ���� ���� Ȯ��
+	@PostMapping("/check/checklogin")
+	public int checklogin(@RequestParam String member_name, String member_id, String member_phone)
+	{
+		int cnt=0;
+		System.out.println("react>>checklogin");
+		System.out.println(member_name);
+		System.out.println(member_id);
+		System.out.println(member_phone);
+		cnt=service.selectCount(member_name, member_id, member_phone);
+		System.out.println(cnt);
+		return cnt;
+	}
+	
+	//��й�ȣ �缳��
+	@PostMapping("/check/updatepassword")
+	public void updatePassword(@RequestParam String member_id, String member_password)
+	{
+		System.out.println("react>>updatepassword");
+		service.updatePassword(member_id, member_password);
+	}
+	
+	//������ȣ ���� �߼�
+	@PostMapping("/check/checknum")
+	public String checknum(@RequestParam String member_phone)
+	{
+		System.out.println("react>>checknum");
+		String randomsu="";
+		MemberDto cdto=service.admin();
+		String adminhp=cdto.getMember_phone();
+		
+		for(int i=0;i<6;i++)
+		{
+			int nansu=(int)(Math.random()*10);
+			randomsu+=Integer.toString(nansu);
+		}
+		System.out.println(member_phone);
+		
+		ExampleSend send=new ExampleSend();
+		send.sendSms(randomsu, member_phone, adminhp);
+		
+		return randomsu;
+	}
+	
+	//���̵� ���� �߼�
+	@PostMapping("/check/emailId")
+	public void emailId(@RequestParam String member_email)
+	{
+		System.out.println("react>>emailId");
+		System.out.println(member_email);
+		String member_id=service.selectId(member_email);
+		String email_content=member_id.substring(0, member_id.length()-2)+"**";
+		String content="ȸ������ Id�� "+email_content+"�Դϴ�.";
+		
+		MimeMessage message=mailsender.createMimeMessage();
+		try {
+		
+			message.setSubject("IT Campus ���̵� Ȯ��");//��������
+			message.setText(content);//���Ϻ���
+			message.setRecipients(MimeMessage.RecipientType.TO, InternetAddress.parse(member_email));//���� �����ּ�
+			mailsender.send(message);//��������
+
+		} catch (MessagingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.out.println("mail error="+e.getMessage());
+		}
+
+	}
 	
 }

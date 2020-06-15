@@ -38,7 +38,7 @@ public class MemberController {
 	@Autowired
 	private JavaMailSender mailsender;
 	
-	//�α���
+	//로그인
 	@PostMapping("/login/loginck")
 	public Map<String,String> loginck(@RequestParam String member_id, @RequestParam String member_password
 			,@RequestParam(required=false) String idsave,HttpSession session)
@@ -62,7 +62,7 @@ public class MemberController {
 		}
 	}
 	
-	
+	//아이디 중복확인
 	@GetMapping("/member/idcheck")
 	public int idcheck(@RequestParam String id)
 	{
@@ -74,7 +74,7 @@ public class MemberController {
 		return idcheck;
 	}
 	
-	//ȸ�� �߰�
+	//회원가입 -회원 추가
 	@PostMapping("/member/insert")
 	public void insertMember(@RequestParam String member_name,
 			@RequestParam String member_id,
@@ -100,8 +100,8 @@ public class MemberController {
 		service.insertMember(memberdto);
 	}
 	
-	//���� �߰� �κ�
-	//���̵� ã�� ���� ���� Ȯ��
+	//혜지 추가 부분
+	//아이디 찾기 위한 정보 확인
 	@PostMapping("/check/checkId")
 	public int checkId(@RequestParam String member_name, String member_email, String member_phone)
 	{
@@ -115,7 +115,7 @@ public class MemberController {
 		return cnt;
 	}
 	
-	//��й�ȣ �缳���� ���� ���� Ȯ��
+	//비밀번호 재설정을 위한 정보 확인
 	@PostMapping("/check/checklogin")
 	public int checklogin(@RequestParam String member_name, String member_id, String member_phone)
 	{
@@ -129,7 +129,7 @@ public class MemberController {
 		return cnt;
 	}
 	
-	//��й�ȣ �缳��
+	//비밀번호 재설정
 	@PostMapping("/check/updatepassword")
 	public void updatePassword(@RequestParam String member_id, String member_password)
 	{
@@ -137,7 +137,7 @@ public class MemberController {
 		service.updatePassword(member_id, member_password);
 	}
 	
-	//������ȣ ���� �߼�
+	//인증번호 문자 발송
 	@PostMapping("/check/checknum")
 	public String checknum(@RequestParam String member_phone)
 	{
@@ -159,7 +159,7 @@ public class MemberController {
 		return randomsu;
 	}
 	
-	//���̵� ���� �߼�
+	//아이디 메일 발송
 	@PostMapping("/check/emailId")
 	public void emailId(@RequestParam String member_email)
 	{
@@ -167,15 +167,15 @@ public class MemberController {
 		System.out.println(member_email);
 		String member_id=service.selectId(member_email);
 		String email_content=member_id.substring(0, member_id.length()-2)+"**";
-		String content="ȸ������ Id�� "+email_content+"�Դϴ�.";
+		String content="회占쏙옙占쏙옙占쏙옙 Id占쏙옙 "+email_content+"占쌉니댐옙.";
 		
 		MimeMessage message=mailsender.createMimeMessage();
 		try {
 		
-			message.setSubject("IT Campus ���̵� Ȯ��");//��������
-			message.setText(content);//���Ϻ���
-			message.setRecipients(MimeMessage.RecipientType.TO, InternetAddress.parse(member_email));//���� �����ּ�
-			mailsender.send(message);//��������
+			message.setSubject("IT Campus 占쏙옙占싱듸옙 확占쏙옙");//占쏙옙占쏙옙占쏙옙占쏙옙
+			message.setText(content);//占쏙옙占싹븝옙占쏙옙
+			message.setRecipients(MimeMessage.RecipientType.TO, InternetAddress.parse(member_email));//占쏙옙占쏙옙 占쏙옙占쏙옙占쌍쇽옙
+			mailsender.send(message);//占쏙옙占쏙옙占쏙옙占쏙옙
 
 		} catch (MessagingException e) {
 			// TODO Auto-generated catch block

@@ -8,8 +8,10 @@ import org.springframework.stereotype.Service;
 @Service
 public class MemberService implements MemberServiceInter {
 
-		@Autowired
-		private MemberDao dao;
+	@Autowired
+	private MemberDaoInter dao;
+	
+	
 	@Override
 	public void insertMember(MemberDto dto) {
 		// TODO Auto-generated method stub
@@ -56,6 +58,12 @@ public class MemberService implements MemberServiceInter {
 	public MemberDto selectNameMember(String member_id) {
 		// TODO Auto-generated method stub
 		return dao.selectNameMember(member_id);
+	}
+
+	@Override
+	public int idCheckMember(String member_id) {
+		// TODO Auto-generated method stub
+		return dao.idCheckMember(member_id);
 	}
 
 }

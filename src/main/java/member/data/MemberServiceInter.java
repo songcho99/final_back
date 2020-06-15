@@ -12,4 +12,5 @@ public interface MemberServiceInter {
 	public boolean checkId(String member_id);
 	public boolean isCheckPass(String member_id,String member_password);
 
+	public int idCheckMember(String member_id);
 }

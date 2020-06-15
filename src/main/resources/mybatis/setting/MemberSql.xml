@@ -35,4 +35,7 @@
    <select id="checkPassOfMember" parameterType="HashMap" resultType="int">
       select count(*) from member where member_id=#{member_id} and member_password=#{member_password}
    </select>
+	<select id="idCheckMember" parameterType="String" resultType="int">
+		select count(*) from member where member_id = #{member_id}
+	</select>
 </mapper>

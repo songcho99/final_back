@@ -10,6 +10,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,7 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class MemberController {
 	
 	@Autowired
-	MemberService service;
+	private MemberService service;
 	
 	@GetMapping("/login/loginck")
 	public Map<String,String> loginck(@RequestParam String member_id, @RequestParam String member_password
@@ -29,7 +34,7 @@ public class MemberController {
 		{
 		
 		System.out.println("id:"+member_id+",pw:"+member_password);
-		System.out.println("react>>login ¼º°ø");
+		System.out.println("react>>login ï¿½ï¿½ï¿½ï¿½");
 		
 		map.put("member_name",service.selectNameMember(member_id).getMember_name());
 		map.put("success","success");
@@ -42,5 +47,27 @@ public class MemberController {
 			return map;
 		}
 	}
+	
+	
+	@GetMapping("/member/idcheck")
+	public int idcheck(@RequestParam String id)
+	{
+		System.out.println("react >> idcheck"+","+id);
+		
+		int idcheck = service.idCheckMember(id);
+		System.out.println("idcheck:"+idcheck);
+		
+		return idcheck;
+	}
+	
+	@PostMapping("/member/insert")
+	public void insertMember(@RequestBody MemberDto memberdto)
+	{
+		System.out.println("react >> insert, "+ memberdto.getMember_id());
+		
+		service.insertMember(memberdto);
+	}
+	
+	
 	
 }

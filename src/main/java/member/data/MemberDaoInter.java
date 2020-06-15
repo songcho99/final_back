@@ -16,4 +16,5 @@ public interface MemberDaoInter {
 	public int isCheckPass(String member_id,String member_password);
 	
 
+	public int idCheckMember(String member_id);
 }

@@ -167,15 +167,15 @@ public class MemberController {
 		System.out.println(member_email);
 		String member_id=service.selectId(member_email);
 		String email_content=member_id.substring(0, member_id.length()-2)+"**";
-		String content="회占쏙옙占쏙옙占쏙옙 Id占쏙옙 "+email_content+"占쌉니댐옙.";
+		String content="회원님의 Id는 "+email_content+"입니다.";
 		
 		MimeMessage message=mailsender.createMimeMessage();
 		try {
 		
-			message.setSubject("IT Campus 占쏙옙占싱듸옙 확占쏙옙");//占쏙옙占쏙옙占쏙옙占쏙옙
-			message.setText(content);//占쏙옙占싹븝옙占쏙옙
-			message.setRecipients(MimeMessage.RecipientType.TO, InternetAddress.parse(member_email));//占쏙옙占쏙옙 占쏙옙占쏙옙占쌍쇽옙
-			mailsender.send(message);//占쏙옙占쏙옙占쏙옙占쏙옙
+			message.setSubject("IT Campus 아이디 확인");//메일제목
+			message.setText(content);//메일본문
+			message.setRecipients(MimeMessage.RecipientType.TO, InternetAddress.parse(member_email));//보낼 메일주소
+			mailsender.send(message);//메일전송
 
 		} catch (MessagingException e) {
 			// TODO Auto-generated catch block

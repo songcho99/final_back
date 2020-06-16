@@ -100,7 +100,6 @@ public class MemberController {
 		service.insertMember(memberdto);
 	}
 	
-	//혜지 추가 부분
 	//아이디 찾기 위한 정보 확인
 	@PostMapping("/check/checkId")
 	public int checkId(@RequestParam String member_name, String member_email, String member_phone)

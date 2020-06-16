@@ -226,7 +226,13 @@
 		    <version>1.4.7</version>
 		</dependency>
 		
-
+		<!-- https://mvnrepository.com/artifact/org.apache.poi/poi, 엑셀 관련 dependency -->
+		<dependency>
+		    <groupId>org.apache.poi</groupId>
+		    <artifactId>poi</artifactId>
+		    <version>3.17</version>
+		</dependency>
+		
 	</dependencies>
 	<build>
 		<plugins>

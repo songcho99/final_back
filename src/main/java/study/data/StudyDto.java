@@ -2,6 +2,8 @@ package study.data;
 
 import java.sql.Timestamp;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class StudyDto {
 	private int study_num;
 	private String study_type;
@@ -14,10 +16,11 @@ public class StudyDto {
 	private String study_level;
 	private String study_intr;
 	private String study_goal;
-	private String study_process;
+	private String study_progress;
 	private String study_address;
-	private String study_detailddr;
-	private int study_boardtype;
+	private String study_detailaddr;
+	private MultipartFile uploadfile;
+	private String study_mainimage;
 	private Timestamp study_writeday;
 	
 	public int getStudy_num() {
@@ -86,11 +89,11 @@ public class StudyDto {
 	public void setStudy_goal(String study_goal) {
 		this.study_goal = study_goal;
 	}
-	public String getStudy_process() {
-		return study_process;
+	public String getStudy_progress() {
+		return study_progress;
 	}
-	public void setStudy_process(String study_process) {
-		this.study_process = study_process;
+	public void setStudy_progress(String study_progress) {
+		this.study_progress = study_progress;
 	}
 	public String getStudy_address() {
 		return study_address;
@@ -98,17 +101,23 @@ public class StudyDto {
 	public void setStudy_address(String study_address) {
 		this.study_address = study_address;
 	}
-	public String getStudy_detailddr() {
-		return study_detailddr;
+	public String getStudy_detailaddr() {
+		return study_detailaddr;
 	}
-	public void setStudy_detailddr(String study_detailddr) {
-		this.study_detailddr = study_detailddr;
+	public void setStudy_detailaddr(String study_detailaddr) {
+		this.study_detailaddr = study_detailaddr;
 	}
-	public int getStudy_boardtype() {
-		return study_boardtype;
+	public MultipartFile getUploadfile() {
+		return uploadfile;
 	}
-	public void setStudy_boardtype(int study_boardtype) {
-		this.study_boardtype = study_boardtype;
+	public void setUploadfile(MultipartFile uploadfile) {
+		this.uploadfile = uploadfile;
+	}
+	public String getStudy_mainimage() {
+		return study_mainimage;
+	}
+	public void setStudy_mainimage(String study_mainimage) {
+		this.study_mainimage = study_mainimage;
 	}
 	public Timestamp getStudy_writeday() {
 		return study_writeday;
@@ -123,8 +132,9 @@ public class StudyDto {
 				+ ", study_member_num=" + study_member_num + ", study_startdate=" + study_startdate + ", study_enddate="
 				+ study_enddate + ", study_gatherday=" + study_gatherday + ", study_peoples=" + study_peoples
 				+ ", study_level=" + study_level + ", study_intr=" + study_intr + ", study_goal=" + study_goal
-				+ ", study_process=" + study_process + ", study_address=" + study_address + ", study_detailddr="
-				+ study_detailddr + ", study_boardtype=" + study_boardtype + ", study_writeday=" + study_writeday + "]";
+				+ ", study_progress=" + study_progress + ", study_address=" + study_address + ", study_detailaddr="
+				+ study_detailaddr + ", uploadfile=" + uploadfile + ", study_mainimage=" + study_mainimage
+				+ ", study_writeday=" + study_writeday + "]";
 	}
 	
 }

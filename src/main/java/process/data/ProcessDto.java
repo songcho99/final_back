@@ -1,6 +1,12 @@
 package process.data;
 
 import java.sql.Timestamp;
+import java.util.Date;
+
+import org.springframework.beans.factory.annotation.Required;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class ProcessDto {
 	private int process_num;
@@ -85,6 +91,7 @@ public class ProcessDto {
 	public Timestamp getProcess_writeday() {
 		return process_writeday;
 	}
+	 @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
 	public void setProcess_writeday(Timestamp process_writeday) {
 		this.process_writeday = process_writeday;
 	}

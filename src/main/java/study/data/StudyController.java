@@ -34,5 +34,8 @@ public class StudyController {
 		System.out.println(dto.getStudy_startdate());
 		System.out.println(dto.getStudy_enddate());
 		System.out.println(dto.getUploadfile().getOriginalFilename());
+		for(String s:dto.getStudy_gatherdayname()) {
+			System.out.println(s);
+		}
 	}
 }

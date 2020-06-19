@@ -1,6 +1,7 @@
 package study.data;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 
 import org.springframework.web.multipart.MultipartFile;
 
@@ -11,6 +12,7 @@ public class StudyDto {
 	private int study_member_num;
 	private String study_startdate;
 	private String study_enddate;
+	private ArrayList<String> study_gatherdayname;
 	private String study_gatherday;
 	private int study_peoples;
 	private String study_level;
@@ -58,6 +60,12 @@ public class StudyDto {
 	}
 	public void setStudy_enddate(String study_enddate) {
 		this.study_enddate = study_enddate;
+	}
+	public ArrayList<String> getStudy_gatherdayname() {
+		return study_gatherdayname;
+	}
+	public void setStudy_gatherdayname(ArrayList<String> study_gatherdayname) {
+		this.study_gatherdayname = study_gatherdayname;
 	}
 	public String getStudy_gatherday() {
 		return study_gatherday;
@@ -130,11 +138,11 @@ public class StudyDto {
 	public String toString() {
 		return "StudyDto [study_num=" + study_num + ", study_type=" + study_type + ", study_subject=" + study_subject
 				+ ", study_member_num=" + study_member_num + ", study_startdate=" + study_startdate + ", study_enddate="
-				+ study_enddate + ", study_gatherday=" + study_gatherday + ", study_peoples=" + study_peoples
-				+ ", study_level=" + study_level + ", study_intr=" + study_intr + ", study_goal=" + study_goal
-				+ ", study_progress=" + study_progress + ", study_address=" + study_address + ", study_detailaddr="
-				+ study_detailaddr + ", uploadfile=" + uploadfile + ", study_mainimage=" + study_mainimage
-				+ ", study_writeday=" + study_writeday + "]";
+				+ study_enddate + ", study_gatherdayname=" + study_gatherdayname + ", study_gatherday="
+				+ study_gatherday + ", study_peoples=" + study_peoples + ", study_level=" + study_level
+				+ ", study_intr=" + study_intr + ", study_goal=" + study_goal + ", study_progress=" + study_progress
+				+ ", study_address=" + study_address + ", study_detailaddr=" + study_detailaddr + ", uploadfile="
+				+ uploadfile + ", study_mainimage=" + study_mainimage + ", study_writeday=" + study_writeday + "]";
 	}
 	
 }

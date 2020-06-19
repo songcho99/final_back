@@ -1,5 +1,7 @@
 package member.data;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
@@ -25,15 +27,15 @@ public class MemberService implements MemberServiceInter {
 	}
 
 	@Override
-	public void deleteMember(MemberDto dto) {
+	public void deleteMember(int member_num) {
 		// TODO Auto-generated method stub
-		dao.deleteMember(dto);
+		dao.deleteMember(member_num);
 	}
 
 	@Override
-	public MemberDto selectOneMember(int membernum) {
+	public MemberDto selectOneMember(int member_num) {
 		// TODO Auto-generated method stub
-		return dao.selectOneMember(membernum);
+		return dao.selectOneMember(member_num);
 	}
 
 	@Override
@@ -95,6 +97,12 @@ public class MemberService implements MemberServiceInter {
 	public void updatePassword(String member_id, String member_password) {
 		// TODO Auto-generated method stub
 		dao.updatePassword(member_id, member_password);
+	}
+
+	@Override
+	public List<MemberDto> allOfMember(String type,String field, String search) {
+		// TODO Auto-generated method stub
+		return dao.allOfMember(type,field, search);
 	}
 
 

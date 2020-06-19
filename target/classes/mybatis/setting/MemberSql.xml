@@ -59,15 +59,15 @@
 		update member set member_password=#{member_password} where member_id=#{member_id}
 	</update>
 	<!-- 회원관리 검색 -->
-	<select id="AllOfMember" parameterType="HashMap" resultType="memberdto">
+	<select id="allOfMember" parameterType="HashMap" resultType="memberdto">
 		select * from member where 1=1 
 		<if test="type!=null and type!=''">
 			and member_type = #{type}
 		</if>
 		<if test="search!=null and search!=''">
-			and ${field} like '%'||#{search}||'%'
+			and ${field} like concat('%',#{search},'%')
 		</if>
 		order by member_num asc
-		limit #{start} and #{end}
+		<!-- limit #{start},#{end} -->
 	</select>
 </mapper>

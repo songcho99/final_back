@@ -18,6 +18,8 @@
 		<typeAlias type="studyapply.data.StudyApplyDto" alias="studyapplydto"/>
 		<typeAlias type="studyfeed.data.StudyFeedDto" alias="studyfeeddto"/>
 		<typeAlias type="studygroup.data.StudyGroupDto" alias="studygroupdto"/>
+		<typeAlias type="process.data.ProcessListDto" alias="processlistdto" />
+		<typeAlias type="files.data.ProcessFilesDto" alias="processfilesdto" />
 	</typeAliases>
 	<mappers>
 		<mapper resource="mybatis/setting/TestSql.xml"/>
@@ -35,6 +37,7 @@
 		<mapper resource="mybatis/setting/StudySql.xml"/>
 		<mapper resource="mybatis/setting/StudyApplySql.xml"/><!--  -->
 		<mapper resource="mybatis/setting/StudyFeedSql.xml"/>
-		<mapper resource="mybatis/setting/StudyGroupSql.xml"/> 
+		<mapper resource="mybatis/setting/StudyGroupSql.xml"/> 		
+		 
 	</mappers>
 </configuration>

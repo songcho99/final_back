@@ -7,18 +7,39 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Vector;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.ModelAndView;
 
 import books.data.BooksDto;
+import books.data.BooksServiceInter;
+import files.data.FilesDto;
+import files.data.ProcessFilesDto;
 import member.data.MemberDto;
+import upload.util.ManageFileClass;
 import upload.util.ReadBooksList;
+import upload.util.WebCrawling;
+
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+
 
 @RestController
 @CrossOrigin
@@ -26,6 +47,10 @@ public class ProcessController {
 	
 	@Autowired
 	private ProcessServiceInter service;
+	
+	@Autowired
+	private BooksServiceInter booksService;
+	
 	
 	@GetMapping("/process/searchTeacher")
 	public List<MemberDto> searchTeacher()
@@ -60,20 +85,104 @@ public class ProcessController {
 		
 		return list;
 	}
-	
-	@PostMapping("/process/insert")
-	public int insertProcess(@ModelAttribute ProcessDto processdto)
+		
+	@RequestMapping(value="/process/insert",method=RequestMethod.POST)
+	public int insertProcess(@ModelAttribute ProcessDto processdto,HttpServletRequest request)
 	{
+		
 		System.out.println("react >> processInsert");
-		processdto.setProcess_member_num(1);
+		String teachernum = processdto.getProcess_teacher();
+		
+		MemberDto teacher = service.selectOneTeacher(teachernum);
+		
+		processdto.setProcess_teachername(teacher.getMember_name());
+		processdto.setProcess_member_num(12);
 		
 		service.insertProcess(processdto);
+		System.out.println("insert 성공");
+		int maxnum = service.selectProcessMaxnum();	
+	
 		
-		int maxnum = service.selectProcessMaxnum();
+		if(processdto.getProcess_uploadfiles()!=null) {			
+			ManageFileClass mfc = new ManageFileClass();
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			String path = request.getSession().getServletContext().getRealPath("/WEB-INF/uploadfile");
+			System.out.println("path:"+path);
+			String nowdate = sdf.format(new Date());
+			
+			for(MultipartFile uploadfile : processdto.getProcess_uploadfiles())
+			{
+				String fileName= nowdate+"_"+maxnum+"_"+uploadfile.getOriginalFilename();
+				mfc.fileUpload(fileName,uploadfile, path, maxnum);
+				ProcessFilesDto processfilesdto = new ProcessFilesDto();
 				
-		
-		return 0;
+				processfilesdto.setProcessfiles_process_num(maxnum);
+				processfilesdto.setProcessfiles_process_filename(fileName);
+				service.insertProcessFiles(processfilesdto);
+			}
+			
+			
+		}
+			
+		return maxnum;
 	}
 	
+	@RequestMapping(value="/process/list",method=RequestMethod.POST)
+	public List<ProcessListDto> getAllProcess(){
+		System.out.println("react >> getAllProcess");
+		
+		return service.getAllProcess();
+		
+	}
+	@RequestMapping(value="/process/detail",method=RequestMethod.GET)
+	public Map<String,Object> selectOneProcess(@RequestParam int process_num)
+	{
+		System.out.println("react >> process/detail");
+		Map<String,Object> process = new HashMap<String,Object>();
+		
+		ProcessDto processdto = service.selectOneProcess(process_num);
+		List<ProcessFilesDto> processfiles = service.processFilesList(process_num);
+		List<BooksDto> books = booksService.processBooks(process_num);
+		
+		System.out.println("processdto_subject : "+processdto.getProcess_subject() );
+		System.out.println("files size : " + processfiles.size());
+		System.out.println("books size : " + books.size());
+		
+		process.put("processdto",processdto);
+		process.put("processfiles",processfiles);
+		process.put("books",books);
+		
+		return process;
+	}
+	
+	@RequestMapping(value="/process/getImages",method=RequestMethod.GET)
+	public List<String> getBooksImages(int num)
+	{
+		List<BooksDto> s = booksService.processBooks(num);
+		
+		WebCrawling craw = new WebCrawling();
+	
+		List<String> booksImages = craw.booksImageCrawling(s);
+		
+		if(booksImages.size() > 0) {
+			return booksImages;		
+		}
+		
+		return null;
+	}
+	
+	//채용공고 크롤링 메서드
+	@GetMapping("/process/hirelist")
+	public Map<String,List<String>> getHireList(String searchtxt){
+		
+		Map<String,List<String>> hirelist = new HashMap<String,List<String>>();
+		
+		WebCrawling craw = new WebCrawling();
+		
+		hirelist = craw.getHireList(searchtxt);
+		
+		
+		return hirelist;
+	}
 	
 }

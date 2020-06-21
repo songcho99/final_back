@@ -2,12 +2,30 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="process">
 	<insert id="insertProcess" parameterType="processdto">
-		insert into process(process_type,process_member_num,process_subject,process_intr,process_peoples,process_startdate,process_enddate,process_teacher,process_writeday) values (#{process_type},#{process_member_num},#{process_subject},#{process_intr},#{process_peoples},#{process_startdate},#{process_enddate},#{process_teacher},now())
+		insert into process(process_type,process_member_num,process_subject,process_intr,process_peoples,process_startdate,process_enddate,process_teacher,process_writeday,process_teachername,process_writer) values (#{process_type},#{process_member_num},#{process_subject},#{process_intr},#{process_peoples},#{process_startdate},#{process_enddate},#{process_teacher},now(),#{process_teachername},#{process_writer})
 	</insert>
+	<select id="selectProcessMaxnum" resultType="int">
+		select max(process_num) from process
+	</select>
+	<select id="getAllProcess" parameterType="HashMap" resultType="processlistdto">
+		select process_num,process_type,process_member_num,process_subject,process_intr,process_peoples,process_startdate,process_enddate,process_status,process_teacher,process_writeday,process_teachername,process_writer from process 
+		where 1=1
+		order by process_num desc
+		limit #{start},#{end}
+	</select>
+	<select id="selectOneProcess" parameterType="int" resultType="processdto">
+		select * from process where process_num = #{process_num}	
+	</select>
+	<select id="selectOneTeacher" parameterType="String" resultType="memberdto">
+		select * from member where member_num = #{teachernum}
+	</select>
 	<select id="searchTeacher" resultType="memberdto">
 		select * from member where member_type = "강사"
 	</select>
-	<select id="selectProcessMaxnum" resultType="int">
-		select max(process_num) from process
+	<insert id="insertProcessFiles" parameterType="processfilesdto">
+		insert into processfiles (processfiles_process_num, processfiles_process_filename) values (#{processfiles_process_num},#{processfiles_process_filename})
+	</insert>
+	<select id="processFilesList" parameterType="int" resultType="processfilesdto">
+		select * from processfiles where processfiles_process_num = #{processfiles_process_num}
 	</select>
 </mapper>

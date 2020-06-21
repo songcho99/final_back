@@ -21,6 +21,9 @@ public class FilesDto {
 	public int getFiles_tables_boardtype() {
 		return files_tables_boardtype;
 	}
+	
+	
+	
 	public void setFiles_tables_boardtype(int files_tables_boardtype) {
 		this.files_tables_boardtype = files_tables_boardtype;
 	}

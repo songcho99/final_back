@@ -1,6 +1,8 @@
 package study.data;
 
 import java.sql.Timestamp;
+import java.util.List;
+import java.util.Map;
 
 import org.springframework.web.multipart.MultipartFile;
 

@@ -1,41 +1,27 @@
 package files.data;
 
 public class FilesDto {
-	private int files_num;
-	private int files_tables_num;
-	private int files_tables_boardtype;
-	private String files_tables_filename;
+	private int noticefiles_num;
+	private int noticefiles_notice_num;
+	private String noticefiles_notice_filename;
 	
-	public int getFiles_num() {
-		return files_num;
+	public int getNoticefiles_num() {
+		return noticefiles_num;
 	}
-	public void setFiles_num(int files_num) {
-		this.files_num = files_num;
+	public void setNoticefiles_num(int noticefiles_num) {
+		this.noticefiles_num = noticefiles_num;
 	}
-	public int getFiles_tables_num() {
-		return files_tables_num;
+	public int getNoticefiles_notice_num() {
+		return noticefiles_notice_num;
 	}
-	public void setFiles_tables_num(int files_tables_num) {
-		this.files_tables_num = files_tables_num;
+	public void setNoticefiles_notice_num(int noticefiles_notice_num) {
+		this.noticefiles_notice_num = noticefiles_notice_num;
 	}
-	public int getFiles_tables_boardtype() {
-		return files_tables_boardtype;
+	public String getNoticefiles_notice_filename() {
+		return noticefiles_notice_filename;
 	}
-	public void setFiles_tables_boardtype(int files_tables_boardtype) {
-		this.files_tables_boardtype = files_tables_boardtype;
-	}
-	public String getFiles_tables_filename() {
-		return files_tables_filename;
-	}
-	public void setFiles_tables_filename(String files_tables_filename) {
-		this.files_tables_filename = files_tables_filename;
-	}
-	
-	@Override
-	public String toString() {
-		return "FilesDto [files_num=" + files_num + ", files_tables_num=" + files_tables_num
-				+ ", files_tables_boardtype=" + files_tables_boardtype + ", files_tables_filename="
-				+ files_tables_filename + "]";
+	public void setNoticefiles_notice_filename(String noticefiles_notice_filename) {
+		this.noticefiles_notice_filename = noticefiles_notice_filename;
 	}
 	
 }

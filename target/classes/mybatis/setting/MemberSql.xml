@@ -45,9 +45,9 @@
 		select count(*) from member 
 		where member_name=#{member_name} and member_email=#{member_email} and member_phone=#{member_phone} 
 	</select>
-	<!-- 해당 이메일에 맞는 회원 아이디 -->
-	<select id="idOfMember" parameterType="String" resultType="String">
-		select member_id from member where member_email=#{member_email}
+	<!-- 해당 정보에 맞는 회원 아이디 -->
+	<select id="idOfMember" parameterType="HashMap" resultType="String">
+		select member_id from member where member_name=#{member_name} and member_email=#{member_email} and member_phone=#{member_phone} 
 	</select>
 	<!-- 비밀번호 찾기 위한 정보 확인 -->
 	<select id="selectOfCheck" parameterType="HashMap" resultType="int">
@@ -68,6 +68,6 @@
 			and ${field} like '%'||#{search}||'%'
 		</if>
 		order by member_num asc
-		limit #{start} and #{end}
+		limit #{start},#{end}
 	</select>
 </mapper>

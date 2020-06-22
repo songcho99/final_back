@@ -80,9 +80,9 @@ public class MemberService implements MemberServiceInter {
 	}
 
 	@Override
-	public String selectId(String member_email) {
+	public String selectId(String member_name, String member_email, String member_phone) {
 		// TODO Auto-generated method stub
-		return dao.selectId(member_email);
+		return dao.selectId(member_name, member_email, member_phone);
 	}
 
 	@Override

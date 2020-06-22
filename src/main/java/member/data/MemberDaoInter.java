@@ -21,8 +21,8 @@ public interface MemberDaoInter {
 	public MemberDto admin();
 	//아이디 재설정 위한 정보 확인
 	public int selectCountId(String member_name, String member_email, String member_phone);
-	//해당 이메일의 회원 아이디
-	public String selectId(String member_email);
+	//해당 입력한 정보의 회원 아이디
+	public String selectId(String member_name, String member_email, String member_phone);
 	//비밀번호 재설정 위한 정보 확인
 	public int selectCount(String member_name, String member_id, String member_phone);
 	//비밀번호 재설정

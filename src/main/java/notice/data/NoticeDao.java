@@ -50,6 +50,12 @@ public class NoticeDao extends SqlSessionDaoSupport implements NoticeDaoInter{
 		getSqlSession().update("updateReadCount", notice_num);
 	}
 
+	@Override
+	public void updateNoticetype(int notice_num) {
+		// TODO Auto-generated method stub
+		getSqlSession().update("updateOfNoticetype", notice_num);
+	}
+
 	
 
 }

@@ -17,6 +17,7 @@ public interface NoticeDaoInter {
 	public void deleteNotice(int notice_num);
 	//조회수
 	public void readCount(int notice_num);
-	
+	//맨위로
+	public void updateNoticetype(int notice_num);
 	
 }

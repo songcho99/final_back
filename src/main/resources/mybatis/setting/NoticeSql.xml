@@ -3,7 +3,7 @@
 <mapper namespace="notice">
 	<!-- 리스트 최대 10개 -->
 	<select id="selectOfNotice" resultType="noticedto">
-		select * from notice order by notice_num desc limit 10
+		select * from notice order by notice_type desc, notice_num desc
 	</select>
 	<!-- maxNum -->
 	<select id="maxNumOfNotice" resultType="int">
@@ -29,5 +29,8 @@
 	<update id="updateReadCount" parameterType="int">
 		update notice set notice_readcount=notice_readcount+1 where notice_num=#{notice_num}
 	</update>
-	
+	<!-- 공지 맨위로 -->
+	<update id="updateOfNoticetype" parameterType="int">
+		update notice set notice_type=1 where notice_num=#{notice_num}
+	</update>
 </mapper>

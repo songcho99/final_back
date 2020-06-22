@@ -40,6 +40,13 @@ public class NoticeController {
 	public List<NoticeDto> listNotice()
 	{
 		List<NoticeDto> list=ndao.AllNotice();
+		for(int i=0;i<list.size();i++)
+		{
+			if(list.get(i).getNotice_type()==1)
+			{
+				list.get(i).setNoti_type("[°øÁö]");
+			}
+		}
 		return list;
 	}
 	
@@ -47,18 +54,26 @@ public class NoticeController {
 	@RequestMapping(value="/notice/noticeadd", consumes= {"multipart/form-data"},method = RequestMethod.POST)
 	public void insertNotice(@ModelAttribute NoticeDto ndto,MultipartHttpServletRequest request)
 	{
+		
 		System.out.println("react>>noticeadd");
 		System.out.println(ndto.toString());
-		for(MultipartFile f:ndto.getNotice_file())
-		{
-			System.out.println(f.getOriginalFilename());
-		}
 		//notice add
 		ndao.insertNotice(ndto);
 		int maxNum=ndao.maxNumNotice();
 		System.out.println("maxnum="+maxNum);
+		
 		//file add
-		fdao.insertFile(request, ndto.getNotice_file(), maxNum);
+		if(ndto.getNotice_file()!=null)
+		{			
+			for(MultipartFile f:ndto.getNotice_file())
+			{
+				System.out.println(f.getOriginalFilename());
+			}
+			fdao.insertFile(request, ndto.getNotice_file(), maxNum);
+		}
+		
+		//top
+		ndao.updateNoticetype(maxNum);
 		
 	}
 	
@@ -125,6 +140,7 @@ public class NoticeController {
 		}
 		//notice update
 		ndao.updateNotice(ndto);
+		ndao.updateNoticetype(ndto.getNotice_num());
 		System.out.println("notice_delfile="+ndto.getNotice_delfile());
 		//delete removed file
 		if(ndto.getNotice_delfile()!=null)

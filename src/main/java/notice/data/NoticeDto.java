@@ -16,6 +16,22 @@ public class NoticeDto {
 	private int notice_readcount;
 	private List<MultipartFile> notice_file; //다중파일
 	private List<String> notice_delfile;
+	private int notice_type;
+	private String noti_type;
+	
+	
+	public int getNotice_type() {
+		return notice_type;
+	}
+	public void setNotice_type(int notice_type) {
+		this.notice_type = notice_type;
+	}
+	public String getNoti_type() {
+		return noti_type;
+	}
+	public void setNoti_type(String noti_type) {
+		this.noti_type = noti_type;
+	}
 	public List<String> getNotice_delfile() {
 		return notice_delfile;
 	}

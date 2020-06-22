@@ -217,19 +217,25 @@ public class MemberController {
 	@PostMapping("/mypage/memberupdate")
 	public void updateOfMember(@ModelAttribute MemberDto dto, HttpServletRequest request) {
 		MemberDto memberdto = new MemberDto();
-		MultipartFile file = dto.getProfile_image();
-		String path = request.getSession().getServletContext().getRealPath("/WEB-INF/uploadfile");
-		System.out.println("path="+path);
-		SpringFileWrite sfw = new SpringFileWrite();
-		String filename = sfw.writeProfile(file, path, dto.getMember_email());
-		System.out.println("filename="+filename);
+		
+		if(dto.getProfile_image() != null) {
+			MultipartFile file = dto.getProfile_image();
+			String path = request.getSession().getServletContext().getRealPath("/WEB-INF/uploadfile");
+			System.out.println("path="+path);
+			SpringFileWrite sfw = new SpringFileWrite();
+			String filename = sfw.writeProfile(file, path, dto.getMember_email());
+			System.out.println("filename="+filename);
+			memberdto.setMember_profile(filename);
+		}
+		if(dto.getMember_profile() != null)
+			memberdto.setMember_profile(dto.getMember_profile());
 		
 		memberdto.setMember_num(dto.getMember_num());
 		memberdto.setMember_phone(dto.getMember_phone());
 		memberdto.setMember_email(dto.getMember_email());
 		memberdto.setMember_address(dto.getMember_address());
 		memberdto.setMember_detailaddr(dto.getMember_detailaddr());
-		memberdto.setMember_profile(filename);
+		
 		
 		service.updateMember(memberdto);
 	}

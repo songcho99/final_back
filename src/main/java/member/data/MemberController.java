@@ -1,6 +1,7 @@
 package member.data;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -202,6 +203,8 @@ public class MemberController {
 	{
 		System.out.println("react>>delete");
 		service.deleteMember(member_num);
+	}
+	
 	// mypage member select
 	@GetMapping("/mypage/memberselect")
 	public MemberDto selectOneMember(@RequestParam(name = "member_num") int member_num) {

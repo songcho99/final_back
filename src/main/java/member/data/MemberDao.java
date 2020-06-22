@@ -83,9 +83,13 @@ public class MemberDao extends SqlSessionDaoSupport implements MemberDaoInter{
 	}
 	
 	@Override
-	public String selectId(String member_email) {
+	public String selectId(String member_name, String member_email, String member_phone) {
 		// TODO Auto-generated method stub
-		return getSqlSession().selectOne("idOfMember", member_email);
+		Map<String, String> map=new HashMap<String, String>();
+		map.put("member_name", member_name);
+		map.put("member_email", member_email);
+		map.put("member_phone", member_phone);
+		return getSqlSession().selectOne("idOfMember", map);
 	}
 	
 	@Override

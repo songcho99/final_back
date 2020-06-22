@@ -160,11 +160,13 @@ public class MemberController {
 	
 	//아이디 메일 발송
 	@PostMapping("/check/emailId")
-	public void emailId(@RequestParam String member_email)
+	public void emailId(@RequestParam String member_name, String member_email, String member_phone)
 	{
 		System.out.println("react>>emailId");
+		System.out.println(member_name);
 		System.out.println(member_email);
-		String member_id=service.selectId(member_email);
+		System.out.println(member_phone);
+		String member_id=service.selectId(member_name,member_email,member_phone);
 		String email_content=member_id.substring(0, member_id.length()-2)+"**";
 		String content="회원님의 Id는 "+email_content+"입니다.";
 		

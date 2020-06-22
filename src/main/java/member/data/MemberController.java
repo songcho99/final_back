@@ -51,6 +51,7 @@ public class MemberController {
 		map.put("member_name",service.selectNameMember(member_id).getMember_name());
 		map.put("member_num",service.selectNameMember(member_id).getMember_num());
 		map.put("member_type",service.selectNameMember(member_id).getMember_type());
+		map.put("member_profile",service.selectNameMember(member_id).getMember_profile());
 		map.put("success","success");
 		return map;
 		}

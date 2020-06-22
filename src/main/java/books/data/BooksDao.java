@@ -19,4 +19,10 @@ public class BooksDao extends SqlSessionDaoSupport implements BooksDaoInter{
 		// TODO Auto-generated method stub
 		return getSqlSession().selectList("processBooks", books_process_num);
 	}
+
+	@Override
+	public void deleteBooks(int process_num) {
+		// TODO Auto-generated method stub
+		getSqlSession().delete("deleteBooks",process_num);
+	}
 }

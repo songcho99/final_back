@@ -31,10 +31,11 @@ public class WebCrawling {
 						Elements elem = doc.select("table.type_list > tbody#search_list > tr > td.image > div.cover > a > img");
 						
 						System.out.println(elem.toString());
-						
-						String src = elem.get(0).attr("src");
-
-						booksImages.add(src);
+						if(elem.size() > 0) {
+							String src = elem.get(0).attr("src");
+							
+							booksImages.add(src);
+						}
 						
 						//Elements elem2 = doc.select("input.btn_search");
 						//System.out.println(elem.toString());
@@ -71,14 +72,14 @@ public class WebCrawling {
 			for(Element e : elem)
 			{
 				hiresubject.add(e.attr("title"));
-				hirehref.add(e.attr("href"));
+				hirehref.add("http://www.saramin.co.kr"+e.attr("href"));
 			}
 			
 			Elements elem2 = doc.select("div#recruit_info_list > div.content > div.item_recruit > div.area_corp > strong.corp_name > a");
 			for(Element e : elem2)
 			{
 				corpname.add(e.attr("title"));
-				corphref.add(e.attr("href"));
+				corphref.add("http://www.saramin.co.kr"+e.attr("href"));
 			}
 			
 			Elements elem3 = doc.select("div#recruit_info_list > div.content > div.item_recruit > div.area_job > div.job_date > span.date");

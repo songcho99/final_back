@@ -7,4 +7,7 @@
 	<select id="processBooks" parameterType="int" resultType="booksdto">
 		select * from books where books_process_num = #{books_process_num}
 	</select>
+	<delete id="deleteBooks" parameterType="int">
+		delete from books where books_process_num = #{process_num}
+	</delete>
 </mapper>

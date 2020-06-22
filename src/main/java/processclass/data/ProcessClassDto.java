@@ -4,7 +4,14 @@ public class ProcessClassDto {
 	private int processclass_num;
 	private int processclass_process_num;
 	private int processclass_member_num;
+	private String processclass_member_type;
 	
+	public String getProcessclass_member_type() {
+		return processclass_member_type;
+	}
+	public void setProcessclass_member_type(String processclass_member_type) {
+		this.processclass_member_type = processclass_member_type;
+	}
 	public int getProcessclass_num() {
 		return processclass_num;
 	}

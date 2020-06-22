@@ -28,4 +28,10 @@
 	<select id="processFilesList" parameterType="int" resultType="processfilesdto">
 		select * from processfiles where processfiles_process_num = #{processfiles_process_num}
 	</select>
+	<delete id="deleteProcess" parameterType="int">
+		delete from process where process_num = #{process_num}
+	</delete>
+	<delete id="deleteProcessFiles" parameterType="int">
+		delete from processfiles where processfiles_process_num=#{process_num}
+	</delete>
 </mapper>

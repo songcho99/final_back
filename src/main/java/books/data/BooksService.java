@@ -20,4 +20,9 @@ public class BooksService implements BooksServiceInter{
 		// TODO Auto-generated method stub
 		return dao.processBooks(books_process_num);
 	}
+	@Override
+	public void deleteBooks(int process_num) {
+		// TODO Auto-generated method stub
+		dao.deleteBooks(process_num);
+	}
 }

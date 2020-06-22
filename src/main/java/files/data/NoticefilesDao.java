@@ -44,19 +44,25 @@ public class NoticefilesDao extends SqlSessionDaoSupport implements NoticefilesD
 	@Override
 	public void updateFile(int files_num) {
 		// TODO Auto-generated method stub
-		getSqlSession().update("updateOfFiles", files_num);
+		getSqlSession().update("updateOfNoticefiles", files_num);
 	}
 
 	@Override
 	public void deleteFile(int files_num) {
 		// TODO Auto-generated method stub
-		getSqlSession().delete("deleteOfFiles",files_num);
+		getSqlSession().delete("deleteOfNoticefiles",files_num);
 	}
 
 	@Override
 	public List<String> selectnoticeFile(int noticefiles_notice_num) {
 		// TODO Auto-generated method stub
 		return getSqlSession().selectList("selectOneofNoticefiles", noticefiles_notice_num);
+	}
+
+	@Override
+	public void deleteFile(String noticefiles_notice_filename) {
+		// TODO Auto-generated method stub
+		getSqlSession().delete("deleteOfNoticefile",noticefiles_notice_filename);
 	}
 
 }

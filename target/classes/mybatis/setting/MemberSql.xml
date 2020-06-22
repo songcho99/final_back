@@ -68,6 +68,6 @@
 			and ${field} like '%'||#{search}||'%'
 		</if>
 		order by member_num asc
-		limit #{start} and #{end}
+		limit #{start},#{end}
 	</select>
 </mapper>

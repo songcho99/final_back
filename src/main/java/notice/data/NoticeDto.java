@@ -15,9 +15,17 @@ public class NoticeDto {
 	private String notice_content;
 	private int notice_readcount;
 	private List<MultipartFile> notice_file; //다중파일
+	private List<String> notice_delfile;
+	public List<String> getNotice_delfile() {
+		return notice_delfile;
+	}
+	public void setNotice_delfile(List<String> notice_delfile) {
+		this.notice_delfile = notice_delfile;
+	}
 	private String notice_filename;
 	@JsonFormat(pattern = "yyyy-MM-dd")
 	private Timestamp notice_writeday;
+	
 	public int getNotice_readcount() {
 		return notice_readcount;
 	}
@@ -48,9 +56,6 @@ public class NoticeDto {
 	}
 	public void setNotice_content(String notice_content) {
 		this.notice_content = notice_content;
-	}
-	public int getNotice_boardtype() {
-		return notice_readcount;
 	}
 	public List<MultipartFile> getNotice_file() {
 		return notice_file;

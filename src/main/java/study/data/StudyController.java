@@ -1,22 +1,32 @@
 package study.data;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import member.data.MemberServiceInter;
 import upload.util.SpringFileWrite;
 
 @RestController
 @CrossOrigin
 public class StudyController {
 	@Autowired
-	private StudyServiceInter service;
+	private StudyServiceInter studyservice;
+	
+	@Autowired
+	private MemberServiceInter memberservice;
 	
 	@RequestMapping(value = "/study/add", method = RequestMethod.POST)
 	public void insertStudy(
@@ -51,6 +61,21 @@ public class StudyController {
 		System.out.println("filename="+filename);
 		sdto.setStudy_mainimage(filename);
 		
-		service.insertStudy(sdto);
+		studyservice.insertStudy(sdto);
+	}
+	
+	@GetMapping("/study/list")
+	public Map<String, Object> selectOfStudyList() {
+		Map<String, Object> map = new HashMap<String, Object>();
+
+		List<StudyDto> list = studyservice.selectOfStudyList();
+		List<String> profilelist = new ArrayList<String>();
+		map.put("listdata", list);
+		for(int i = 0; i < list.size(); i++) {
+			profilelist.add(i,memberservice.selectOneMember(list.get(i).getStudy_member_num()).getMember_profile());
+		}
+		map.put("profilelist", profilelist);
+		
+		return map;
 	}
 }

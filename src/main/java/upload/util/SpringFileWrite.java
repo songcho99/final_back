@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import org.apache.commons.io.FilenameUtils;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 //���ε��� �̹����� Ư�� ��ο� ����
@@ -39,8 +41,9 @@ public class SpringFileWrite {
       return fileName;
    }
    
-   public String writeProfile(MultipartFile file, String path, String email) {
-	   String fileName = email + "_" + file.getOriginalFilename();
+   public String writeProfile(MultipartFile file, String path, String email, String name) {
+	   String emailid = StringUtils.substringBefore(email, "@");
+	   String fileName = emailid + "_" + name + "." + FilenameUtils.getExtension(file.getOriginalFilename());
 	   
 	   try {
 		   byte []fileData = file.getBytes();

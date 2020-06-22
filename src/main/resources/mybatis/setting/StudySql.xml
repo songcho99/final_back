@@ -2,13 +2,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="study">
 	<insert id="insertOfStudy" parameterType="studydto">
-		INSERT INTO study(study_type,study_subject,study_member_num,
-		study_startdate,study_enddate,study_gatherday,study_peoples,
-		study_level,study_intr,study_goal,study_progress,study_address,
-		study_detailaddr,study_mainimage,study_writeday) 
-		VALUES (#{study_type},#{study_subject},#{study_member_num},#{study_startdate},
-		#{study_enddate},#{study_gatherday},#{study_peoples},#{study_level},#{study_intr},
-		#{study_goal},#{study_progress},#{study_address},#{study_detailaddr},#{study_mainimage},
-		now())
+		INSERT INTO study(study_type,study_subject,study_member_num,study_startdate,study_enddate,study_gatherday,study_peoples,study_level,study_intr,study_goal,study_progress,study_address,study_detailaddr,study_mainimage,study_writeday,study_writer) VALUES (#{study_type},#{study_subject},#{study_member_num},#{study_startdate},#{study_enddate},#{study_gatherday},#{study_peoples},#{study_level},#{study_intr},#{study_goal},#{study_progress},#{study_address},#{study_detailaddr},#{study_mainimage},now(),#{study_writer})
 	</insert>
 </mapper>

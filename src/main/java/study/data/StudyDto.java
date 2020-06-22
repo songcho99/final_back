@@ -26,6 +26,7 @@ public class StudyDto {
 	private MultipartFile uploadfile;
 	private String study_mainimage;
 	private Timestamp study_writeday;
+	private String study_writer;
 	
 	public int getStudy_num() {
 		return study_num;
@@ -135,6 +136,12 @@ public class StudyDto {
 	public void setStudy_writeday(Timestamp study_writeday) {
 		this.study_writeday = study_writeday;
 	}
+	public String getStudy_writer() {
+		return study_writer;
+	}
+	public void setStudy_writer(String study_writer) {
+		this.study_writer = study_writer;
+	}
 	
 	@Override
 	public String toString() {
@@ -144,7 +151,8 @@ public class StudyDto {
 				+ study_gatherday + ", study_peoples=" + study_peoples + ", study_level=" + study_level
 				+ ", study_intr=" + study_intr + ", study_goal=" + study_goal + ", study_progress=" + study_progress
 				+ ", study_address=" + study_address + ", study_detailaddr=" + study_detailaddr + ", uploadfile="
-				+ uploadfile + ", study_mainimage=" + study_mainimage + ", study_writeday=" + study_writeday + "]";
+				+ uploadfile + ", study_mainimage=" + study_mainimage + ", study_writeday=" + study_writeday
+				+ ", study_writer=" + study_writer + "]";
 	}
 	
 }

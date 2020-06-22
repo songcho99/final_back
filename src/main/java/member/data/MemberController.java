@@ -51,7 +51,6 @@ public class MemberController {
 		map.put("member_name",service.selectNameMember(member_id).getMember_name());
 		map.put("member_num",service.selectNameMember(member_id).getMember_num());
 		map.put("member_type",service.selectNameMember(member_id).getMember_type());
-		map.put("member_profile",service.selectNameMember(member_id).getMember_profile());
 		map.put("success","success");
 		return map;
 		}
@@ -226,7 +225,7 @@ public class MemberController {
 			String path = request.getSession().getServletContext().getRealPath("/WEB-INF/uploadfile");
 			System.out.println("path="+path);
 			SpringFileWrite sfw = new SpringFileWrite();
-			String filename = sfw.writeProfile(file, path, dto.getMember_email());
+			String filename = sfw.writeProfile(file, path, dto.getMember_email(), dto.getMember_name());
 			System.out.println("filename="+filename);
 			memberdto.setMember_profile(filename);
 		}

@@ -103,4 +103,43 @@ public class NoticeController {
 		}
 		ndao.deleteNotice(num);
 	}
+	
+	//update
+	@RequestMapping(value="/notice/noticeupdate", consumes= {"multipart/form-data"},method = RequestMethod.POST)
+	public void updateNotice(@ModelAttribute NoticeDto ndto,
+					MultipartHttpServletRequest request)
+	{
+		System.out.println("react>>noticeupdate");
+		//업로드한 경로
+		String path=request.getSession().getServletContext().getRealPath("/WEB-INF/uploadfile");
+		if(ndto.getNotice_file()!=null)
+		{
+			for(MultipartFile f:ndto.getNotice_file())
+			{
+				System.out.println(f.getOriginalFilename());
+			}
+			//file add
+			fdao.insertFile(request, ndto.getNotice_file(), ndto.getNotice_num());
+		}else {
+			
+		}
+		//notice update
+		ndao.updateNotice(ndto);
+		System.out.println("notice_delfile="+ndto.getNotice_delfile());
+		//delete removed file
+		if(ndto.getNotice_delfile()!=null)
+		{
+			for(int i=0;i<ndto.getNotice_delfile().size();i++)
+			{
+				System.out.println(ndto.getNotice_delfile().get(i));
+				File file=new File(path+"\\"+ndto.getNotice_delfile().get(i));
+				if(file.exists())
+					file.delete();
+				fdao.deleteFile(ndto.getNotice_delfile().get(i));
+			}
+		}else {
+			
+		}
+		
+	}
 }

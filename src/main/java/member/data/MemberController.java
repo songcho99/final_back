@@ -196,6 +196,7 @@ public class MemberController {
 		String filename = sfw.writeProfile(file, path, dto.getMember_email());
 		System.out.println("filename="+filename);
 		
+		memberdto.setMember_num(dto.getMember_num());
 		memberdto.setMember_phone(dto.getMember_phone());
 		memberdto.setMember_email(dto.getMember_email());
 		memberdto.setMember_address(dto.getMember_address());

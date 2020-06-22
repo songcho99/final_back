@@ -13,8 +13,7 @@ public class MemberDto {
 	private String member_detailaddr;
 	private String member_type;
 	private String member_profile;
-	
-	
+	private MultipartFile profile_image;
 	
 	public int getMember_num() {
 		return member_num;
@@ -75,6 +74,12 @@ public class MemberDto {
 	}
 	public void setMember_profile(String member_profile) {
 		this.member_profile = member_profile;
+	}
+	public MultipartFile getProfile_image() {
+		return profile_image;
+	}
+	public void setProfile_image(MultipartFile profile_image) {
+		this.profile_image = profile_image;
 	}
 	
 	@Override

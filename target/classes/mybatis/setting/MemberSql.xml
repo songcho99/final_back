@@ -7,7 +7,7 @@
 	</insert>
 	<!-- 회원 정보 수정 -->
 	<update id="updateOfMember" parameterType="memberdto">
-		update member set member_name=#{member_name},member_id=#{member_id},member_password=#{member_password},member_phone=#{member_phone},member_email=#{member_email},member_address=#{member_address},member_detailaddr=#{member_detailaddr},member_type=#{member_type},member_profile=#{member_profile} where member_num=#{member_num}
+		update member set member_phone=#{member_phone},member_email=#{member_email},member_address=#{member_address},member_detailaddr=#{member_detailaddr},member_profile=#{member_profile} where member_num=#{member_num}
 	</update>
 	<!-- 회원 삭제 -->
 	<delete id="deleteOfMember" parameterType="int">

@@ -10,7 +10,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class ManageFileClass {
 	
-	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd-hh-mm_ss");
 	
 	public void fileUpload(String filename,MultipartFile uploadfile, String path ,int num)
 	{	
@@ -33,8 +33,17 @@ public class ManageFileClass {
 				e.printStackTrace();
 			}
 		}
-		
+	}
+	
+	public void deleteFile(String filename, String path)
+	{
+		File file = new File(path+"\\"+filename);
+		if(file.exists())
+		{
+			file.delete();
+		}
 		
 	}
+	
 }
 	

@@ -100,7 +100,6 @@ public class NoticeController {
 				if(file.exists())
 					file.delete();
 			}
-		}else {
 		}
 		ndao.deleteNotice(num);
 	}

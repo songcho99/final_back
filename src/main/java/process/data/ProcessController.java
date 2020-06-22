@@ -31,6 +31,9 @@ import books.data.BooksServiceInter;
 import files.data.FilesDto;
 import files.data.ProcessFilesDto;
 import member.data.MemberDto;
+import member.data.MemberServiceInter;
+import processclass.data.ProcessClassDto;
+import processclass.data.ProcessClassServiceInter;
 import upload.util.ManageFileClass;
 import upload.util.ReadBooksList;
 import upload.util.WebCrawling;
@@ -51,6 +54,11 @@ public class ProcessController {
 	@Autowired
 	private BooksServiceInter booksService;
 	
+	@Autowired
+	private ProcessClassServiceInter processClassService;
+	
+	@Autowired
+	private MemberServiceInter memberService;
 	
 	@GetMapping("/process/searchTeacher")
 	public List<MemberDto> searchTeacher()
@@ -91,6 +99,8 @@ public class ProcessController {
 	{
 		
 		System.out.println("react >> processInsert");
+		System.out.println("react >> dto");
+		System.out.println(processdto);
 		String teachernum = processdto.getProcess_teacher();
 		
 		MemberDto teacher = service.selectOneTeacher(teachernum);
@@ -101,7 +111,21 @@ public class ProcessController {
 		service.insertProcess(processdto);
 		System.out.println("insert 성공");
 		int maxnum = service.selectProcessMaxnum();	
-	
+		
+		ProcessClassDto processclassdto = new ProcessClassDto();
+		//강사회원 클래스에 추가
+		processclassdto.setProcessclass_process_num(maxnum);
+		processclassdto.setProcessclass_member_num(Integer.parseInt(teachernum));
+		processclassdto.setProcessclass_member_type(teacher.getMember_type());
+		processClassService.insertProcessClass(processclassdto);
+		
+		//매니져 회원 클래스에 추가
+		processclassdto.setProcessclass_member_num(processdto.getProcess_member_num());
+		MemberDto manager = memberService.selectOneMember(processdto.getProcess_member_num());
+		processclassdto.setProcessclass_member_type(manager.getMember_type());
+		processClassService.insertProcessClass(processclassdto);
+		
+		
 		
 		if(processdto.getProcess_uploadfiles()!=null) {			
 			ManageFileClass mfc = new ManageFileClass();
@@ -120,8 +144,6 @@ public class ProcessController {
 				processfilesdto.setProcessfiles_process_filename(fileName);
 				service.insertProcessFiles(processfilesdto);
 			}
-			
-			
 		}
 			
 		return maxnum;
@@ -183,6 +205,32 @@ public class ProcessController {
 		
 		
 		return hirelist;
+	}
+	
+	@GetMapping("process/delete")
+	public void deleteProcess(HttpServletRequest request, int process_num)
+	{
+		String path = request.getSession().getServletContext().getRealPath("/WEB-INF/uploadfile");
+				
+		List<ProcessFilesDto> processfilesdto = service.processFilesList(process_num);
+		ManageFileClass mfc = new ManageFileClass();
+		
+		if(processfilesdto != null)
+		{
+			for(ProcessFilesDto dto : processfilesdto)
+			{
+				String filename = dto.getProcessfiles_process_filename();
+				mfc.deleteFile(filename, path);
+			}
+		}
+		
+		List<BooksDto> booksdto = booksService.processBooks(process_num);
+		
+		
+		
+		booksService.deleteBooks(process_num);
+		service.deleteProcessFiles(process_num);
+		service.deleteProcess(process_num);
 	}
 	
 }

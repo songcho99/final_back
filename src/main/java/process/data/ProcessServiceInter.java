@@ -16,4 +16,8 @@ public interface ProcessServiceInter {
 	public void insertProcessFiles(ProcessFilesDto processfilesdto);
 	public ProcessDto selectOneProcess(int process_num);
 	public List<ProcessFilesDto> processFilesList(int processfiles_process_num);
+	
+	public void deleteProcess(int process_num);
+	public void deleteProcessFiles(int process_num);
+	
 }

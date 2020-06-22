@@ -20,6 +20,8 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -40,10 +42,10 @@ public class MemberController {
 	
 	//로그인
 	@PostMapping("/login/loginck")
-	public Map<String,String> loginck(@RequestParam String member_id, @RequestParam String member_password
+	public Map<String,Object> loginck(@RequestParam String member_id, @RequestParam String member_password
 			,@RequestParam(required=false) String idsave,HttpSession session)
 	{
-		Map<String, String> map = new HashMap<String, String>();
+		Map<String, Object> map = new HashMap<String, Object>();
 		if(service.isCheckPass(member_id, member_password))
 		{
 		
@@ -51,6 +53,7 @@ public class MemberController {
 		System.out.println("react>>login ");
 		
 		map.put("member_name",service.selectNameMember(member_id).getMember_name());
+		map.put("member_num",service.selectNameMember(member_id).getMember_num());
 		map.put("success","success");
 		return map;
 		}
@@ -184,5 +187,26 @@ public class MemberController {
 
 	}
 	
+	//멤버관리-출력
+	@GetMapping("/member/memberlist")
+	public List<MemberDto> list(@RequestParam(required=false) String type, @RequestParam(required=false) String field,
+			@RequestParam(required=false) String search)
+	{
+		System.out.println(type);
+		System.out.println(field);
+		System.out.println(search);
+		System.out.println("react>>list");
+		
+		
+		return service.allOfMember(type,field, search);
+	}
+	
+	//멤버관리-삭제
+	@RequestMapping(value="/member/memberdelete",method=RequestMethod.DELETE)
+	public void delete(@RequestParam int member_num)
+	{
+		System.out.println("react>>delete");
+		service.deleteMember(member_num);
+	}
 	
 }

@@ -1,6 +1,7 @@
 package member.data;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.mybatis.spring.support.SqlSessionDaoSupport;
@@ -24,15 +25,15 @@ public class MemberDao extends SqlSessionDaoSupport implements MemberDaoInter{
 	}
 
 	@Override
-	public void deleteMember(MemberDto dto) {
+	public void deleteMember(int member_num) {
 		// TODO Auto-generated method stub
-		getSqlSession().delete("deleteOfMember",dto);
+		getSqlSession().delete("deleteOfMember",member_num);
 	}
 	//아이디 값 가져오기
 	@Override
-	public MemberDto selectOneMember(int membernum) {
+	public MemberDto selectOneMember(int member_num) {
 		// TODO Auto-generated method stub
-		return getSqlSession().selectOne("SelectOneOfMember", membernum);
+		return getSqlSession().selectOne("SelectOneOfMember", member_num);
 	}
 
 	@Override
@@ -105,6 +106,20 @@ public class MemberDao extends SqlSessionDaoSupport implements MemberDaoInter{
 		map.put("member_id", member_id);
 		map.put("member_password", member_password);
 		getSqlSession().update("updatepasswordOfMember", map);
+	}
+
+	@Override
+	public List<MemberDto> allOfMember(String type, String field,String search) {
+		// TODO Auto-generated method stub
+		
+		Map<String, String> map=new HashMap<String, String>();
+		if(type != null)
+		map.put("type",type);
+		if(search != null) {
+			map.put("field",field);
+			map.put("search", search);			
+		}
+		return getSqlSession().selectList("allOfMember", map);
 	}
 	
 

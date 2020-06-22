@@ -1,5 +1,6 @@
 package upload.util;
 
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -7,7 +8,7 @@ import java.util.Date;
 
 import org.springframework.web.multipart.MultipartFile;
 
-//¾÷·ÎµåÇÑ ÀÌ¹ÌÁö¸¦ Æ¯Á¤ °æ·Î¿¡ ÀúÀå
+//ï¿½ï¿½ï¿½Îµï¿½ï¿½ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½ï¿½ï¿½ Æ¯ï¿½ï¿½ ï¿½ï¿½Î¿ï¿½ ï¿½ï¿½ï¿½ï¿½
 public class SpringFileWrite {
    private FileOutputStream fos;
    
@@ -17,7 +18,7 @@ public class SpringFileWrite {
       Date date=new Date();
       SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMdd_HH_mm_ss");
       String today=sdf.format(date);
-      //ÆÄÀÏ¸í
+      //ï¿½ï¿½ï¿½Ï¸ï¿½
       String fileName=today+"_"+file.getOriginalFilename();
       try {
          byte []fileData=file.getBytes();
@@ -36,5 +37,26 @@ public class SpringFileWrite {
          }
       }
       return fileName;
+   }
+   
+   public String writeProfile(MultipartFile file, String path, String email) {
+	   String fileName = email + "_" + file.getOriginalFilename();
+	   
+	   try {
+		   byte []fileData = file.getBytes();
+		   fos = new FileOutputStream(path + "\\" + fileName);
+		   fos.write(fileData);
+	   } catch (IOException e) {
+		   // TODO Auto-generated catch block
+		   e.printStackTrace();
+	   } finally {
+		   try {
+			fos.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	   }
+	   return fileName;
    }
 }

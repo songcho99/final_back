@@ -1,7 +1,6 @@
 package member.data;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,20 +11,15 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.multipart.MultipartFile;
 
-import upload.util.ManageFileClass;
-
+import upload.util.SpringFileWrite;
 import sms.data.ExampleSend;
 
 @RestController
@@ -184,5 +178,30 @@ public class MemberController {
 
 	}
 	
+	// mypage member select
+	@GetMapping("/mypage/memberselect")
+	public MemberDto selectOneMember(@RequestParam(name = "member_num") int member_num) {
+		MemberDto memberdto = service.selectOneMember(member_num);
+		return memberdto;
+	}
 	
+	// mypage member update
+	@PostMapping("/mypage/memberupdate")
+	public void updateOfMember(@ModelAttribute MemberDto dto, HttpServletRequest request) {
+		MemberDto memberdto = new MemberDto();
+		MultipartFile file = dto.getProfile_image();
+		String path = request.getSession().getServletContext().getRealPath("/WEB-INF/uploadfile");
+		System.out.println("path="+path);
+		SpringFileWrite sfw = new SpringFileWrite();
+		String filename = sfw.writeProfile(file, path, dto.getMember_email());
+		System.out.println("filename="+filename);
+		
+		memberdto.setMember_phone(dto.getMember_phone());
+		memberdto.setMember_email(dto.getMember_email());
+		memberdto.setMember_address(dto.getMember_address());
+		memberdto.setMember_detailaddr(dto.getMember_detailaddr());
+		memberdto.setMember_profile(filename);
+		
+		service.updateMember(memberdto);
+	}
 }

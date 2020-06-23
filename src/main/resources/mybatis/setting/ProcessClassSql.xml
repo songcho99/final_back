@@ -7,4 +7,10 @@
 	<update id="updateTeacherNum" parameterType="processclassdto">
 		update processclass set processclass_member_num = #{processclass_member_num} where processclass_process_num = #{processclass_process_num}
 	</update>
+	<update id="updateMemberType" parameterType="HashMap">
+		update member set member_type = #{process_subject} where member_num = #{member_num}
+	</update>
+	<select id="checkProcessClass" parameterType="HashMap" resultType="int">
+		select count(*) from processclass where processclass_process_num = #{process_num} and processclass_member_num = #{member_num}
+	</select>
 </mapper>

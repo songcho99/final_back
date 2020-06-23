@@ -21,6 +21,18 @@ public class ProcessClassService implements ProcessClassServiceInter{
 		dao.updateTeacherNum(processclassdto);
 	}
 
+	@Override
+	public void updateMemberType(int member_num, String process_subject) {
+		// TODO Auto-generated method stub
+		dao.updateMemberType(member_num,process_subject);
+	}
+
+	@Override
+	public int checkProcessClass(int processclass_process_num, int processclass_member_num) {
+		// TODO Auto-generated method stub
+		return dao.checkProcessClass(processclass_process_num, processclass_member_num);
+	}
+
 	
 
 }

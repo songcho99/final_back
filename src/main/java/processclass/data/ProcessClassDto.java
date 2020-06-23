@@ -30,11 +30,13 @@ public class ProcessClassDto {
 	public void setProcessclass_member_num(int processclass_member_num) {
 		this.processclass_member_num = processclass_member_num;
 	}
-	
 	@Override
 	public String toString() {
 		return "ProcessClassDto [processclass_num=" + processclass_num + ", processclass_process_num="
-				+ processclass_process_num + ", processclass_member_num=" + processclass_member_num + "]";
+				+ processclass_process_num + ", processclass_member_num=" + processclass_member_num
+				+ ", processclass_member_type=" + processclass_member_type + "]";
 	}
+	
+	
 	
 }

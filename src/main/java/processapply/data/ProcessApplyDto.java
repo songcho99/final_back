@@ -13,12 +13,33 @@ public class ProcessApplyDto {
 	private String processapply_member_email;
 	private String processapply_member_address;
 	private String processapply_member_detailaddr;
+	private String processapply_member_type;
 	private int processapply_process_num;
 	private String processapply_applyreason;
+	
+	private String processapply_acceptreason;
+	private String processapply_consulting;
 	private Timestamp processapply_writeday;
 	
 	
-	
+	public String getProcessapply_member_type() {
+		return processapply_member_type;
+	}
+	public void setProcessapply_member_type(String processapply_member_type) {
+		this.processapply_member_type = processapply_member_type;
+	}
+	public String getProcessapply_acceptreason() {
+		return processapply_acceptreason;
+	}
+	public void setProcessapply_acceptreason(String processapply_acceptreason) {
+		this.processapply_acceptreason = processapply_acceptreason;
+	}
+	public String getProcessapply_consulting() {
+		return processapply_consulting;
+	}
+	public void setProcessapply_consulting(String processapply_consulting) {
+		this.processapply_consulting = processapply_consulting;
+	}
 	public String getProcessapply_member_phone() {
 		return processapply_member_phone;
 	}
@@ -86,12 +107,19 @@ public class ProcessApplyDto {
 	public void setProcessapply_writeday(Timestamp processapply_writeday) {
 		this.processapply_writeday = processapply_writeday;
 	}
-	
 	@Override
 	public String toString() {
 		return "ProcessApplyDto [processapply_num=" + processapply_num + ", processapply_member_num="
-				+ processapply_member_num + ", processapply_process_num=" + processapply_process_num
+				+ processapply_member_num + ", processapply_member_name=" + processapply_member_name
+				+ ", processapply_process_subject=" + processapply_process_subject + ", processapply_member_phone="
+				+ processapply_member_phone + ", processapply_member_email=" + processapply_member_email
+				+ ", processapply_member_address=" + processapply_member_address + ", processapply_member_detailaddr="
+				+ processapply_member_detailaddr + ", processapply_process_num=" + processapply_process_num
+				+ ", processapply_applyreason=" + processapply_applyreason + ", processapply_acceptreason="
+				+ processapply_acceptreason + ", processapply_consulting=" + processapply_consulting
 				+ ", processapply_writeday=" + processapply_writeday + "]";
 	}
+	
+	
 	
 }

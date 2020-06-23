@@ -26,4 +26,10 @@ public class ProcessApplyDao extends SqlSessionDaoSupport implements ProcessAppl
 		return getSqlSession().selectOne("selectProcessApply",member_num);
 	}
 
+	@Override
+	public void upldateProcessApplyAccept(ProcessApplyDto processapplydto) {
+		// TODO Auto-generated method stub
+		getSqlSession().update("upldateProcessApplyAccept",processapplydto);
+	}
+
 }

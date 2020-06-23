@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import processclass.data.ProcessClassDto;
+
 @RestController
 @CrossOrigin
 public class ProcessApplyController {
@@ -48,6 +50,18 @@ public class ProcessApplyController {
 		List<ProcessApplyDto> applylist = service.listProcessApply(member_num);
 		
 		return applylist;
+		
+	}
+	
+	@PostMapping("/processapply/accept")
+	public void upldateProcessApplyAccept(@ModelAttribute ProcessApplyDto processapplydto) {
+		
+		System.out.println("react >> accept");
+		
+		System.out.println(processapplydto);
+		
+		
+		service.upldateProcessApplyAccept(processapplydto);
 		
 	}
 }

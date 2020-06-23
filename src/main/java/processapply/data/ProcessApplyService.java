@@ -28,4 +28,10 @@ public class ProcessApplyService implements ProcessApplyServiceInter{
 		// TODO Auto-generated method stub
 		return dao.selectProcessApply(member_num);
 	}
+
+	@Override
+	public void upldateProcessApplyAccept(ProcessApplyDto processapplydto) {
+		// TODO Auto-generated method stub
+		dao.upldateProcessApplyAccept(processapplydto);
+	}
 }

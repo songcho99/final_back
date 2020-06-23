@@ -15,4 +15,12 @@ public class ProcessClassService implements ProcessClassServiceInter{
 		dao.insertProcessClass(processclassdto);
 	}
 
+	@Override
+	public void updateTeacherNum(ProcessClassDto processclassdto) {
+		// TODO Auto-generated method stub
+		dao.updateTeacherNum(processclassdto);
+	}
+
+	
+
 }

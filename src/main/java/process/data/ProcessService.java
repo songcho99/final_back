@@ -74,6 +74,24 @@ public class ProcessService implements ProcessServiceInter{
 		dao.deleteProcessFiles(process_num);
 	}
 
+	@Override
+	public void updateProcess(ProcessDto processdto) {
+		// TODO Auto-generated method stub
+		dao.updateProcess(processdto);
+	}
+
+	@Override
+	public void deleteImage(int processfiles_num) {
+		// TODO Auto-generated method stub
+		dao.deleteImage(processfiles_num);
+	}
+
+	@Override
+	public ProcessFilesDto getProcessImage(int processfiles_num) {
+		// TODO Auto-generated method stub
+		return dao.getProcessImage(processfiles_num);
+	}
+
 
 	
 

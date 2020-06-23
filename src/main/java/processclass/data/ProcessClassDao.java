@@ -12,4 +12,11 @@ public class ProcessClassDao extends SqlSessionDaoSupport implements ProcessClas
 		getSqlSession().insert("insertProcessClass",processclassdto);
 	}
 
+	@Override
+	public void updateTeacherNum(ProcessClassDto processclassdto) {
+		// TODO Auto-generated method stub
+		getSqlSession().update("updateTeacherNum",processclassdto);
+	}
+
+
 }

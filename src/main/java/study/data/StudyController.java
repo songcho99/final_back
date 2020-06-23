@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import member.data.MemberServiceInter;
+import studygroup.data.StudyGroupServiceInter;
 import upload.util.SpringFileWrite;
 
 @RestController
@@ -27,6 +28,9 @@ public class StudyController {
 	
 	@Autowired
 	private MemberServiceInter memberservice;
+	
+	@Autowired
+	private StudyGroupServiceInter studygroupservice;
 	
 	@RequestMapping(value = "/study/add", method = RequestMethod.POST)
 	public void insertStudy(
@@ -61,7 +65,12 @@ public class StudyController {
 		System.out.println("filename="+filename);
 		sdto.setStudy_mainimage(filename);
 		
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		
 		studyservice.insertStudy(sdto);
+		map.put("studygroup_study_num", studyservice.selectNumOfNewestStudy());
+		map.put("studygroup_member_num", dto.getStudy_writer_num());
+		studygroupservice.insertStudyGroup(map);
 	}
 	
 	@GetMapping("/study/list")

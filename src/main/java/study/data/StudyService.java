@@ -22,4 +22,9 @@ public class StudyService implements StudyServiceInter {
 		// TODO Auto-generated method stub
 		return dao.selectOfStudyList();
 	}
+	@Override
+	public int selectNumOfNewestStudy() {
+		// TODO Auto-generated method stub
+		return dao.selectNumOfNewestStudy();
+	}
 }

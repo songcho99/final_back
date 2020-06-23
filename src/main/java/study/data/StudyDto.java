@@ -27,6 +27,7 @@ public class StudyDto {
 	private String study_mainimage;
 	private Timestamp study_writeday;
 	private String study_writer;
+	private int study_writer_num;
 	
 	public int getStudy_num() {
 		return study_num;
@@ -142,6 +143,12 @@ public class StudyDto {
 	public void setStudy_writer(String study_writer) {
 		this.study_writer = study_writer;
 	}
+	public int getStudy_writer_num() {
+		return study_writer_num;
+	}
+	public void setStudy_writer_num(int study_writer_num) {
+		this.study_writer_num = study_writer_num;
+	}
 	
 	@Override
 	public String toString() {
@@ -152,7 +159,7 @@ public class StudyDto {
 				+ ", study_intr=" + study_intr + ", study_goal=" + study_goal + ", study_progress=" + study_progress
 				+ ", study_address=" + study_address + ", study_detailaddr=" + study_detailaddr + ", uploadfile="
 				+ uploadfile + ", study_mainimage=" + study_mainimage + ", study_writeday=" + study_writeday
-				+ ", study_writer=" + study_writer + "]";
+				+ ", study_writer=" + study_writer + ", study_writer_num=" + study_writer_num + "]";
 	}
 	
 }

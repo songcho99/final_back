@@ -18,6 +18,11 @@ public class StudyGroupService implements StudyGroupServiceInter {
 		dao.insertStudyGroup(map);
 	}
 	@Override
+	public void insertOfStudyGroupByDto(StudyGroupDto dto) {
+		// TODO Auto-generated method stub
+		dao.insertOfStudyGroupByDto(dto);
+	}
+	@Override
 	public int selectCountOfStudyGroupPeoples(int studygroup_study_num) {
 		// TODO Auto-generated method stub
 		return dao.selectCountOfStudyGroupPeoples(studygroup_study_num);

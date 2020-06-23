@@ -4,6 +4,9 @@
 	<insert id="insertOfStudyGroup" parameterType="HashMap">
 		INSERT INTO studygroup(studygroup_study_num,studygroup_member_num) VALUES (#{studygroup_study_num},#{studygroup_member_num})
 	</insert>
+	<insert id="insertOfStudyGroupByDto" parameterType="studygroupdto">
+		INSERT INTO studygroup(studygroup_study_num,studygroup_member_num) VALUES (#{studygroup_study_num},#{studygroup_member_num})
+	</insert>
 	<select id="selectCountOfStudyGroupPeoples" parameterType="int" resultType="int">
 		SELECT COUNT(*) as count FROM studygroup WHERE studygroup_study_num = #{studygroup_study_num}
 	</select>

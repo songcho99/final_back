@@ -93,9 +93,13 @@ public class StudyController {
 	}
 	
 	@GetMapping("/study/detail")
-	public StudyDto selectOfStudyDtail(@RequestParam int study_num) {
+	public Map<String, Object> selectOfStudyDtail(@RequestParam int study_num) {
 		StudyDto dto = studyservice.selectOfStudyByNum(study_num);
+		Map<String, Object> map = new HashMap<String, Object>();
 		
-		return dto;
+		map.put("studydata", dto);
+		map.put("study_writer_num", dto.getStudy_member_num());
+		
+		return map;
 	}
 }

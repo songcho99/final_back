@@ -13,6 +13,11 @@ public class StudyGroupDao extends SqlSessionDaoSupport implements StudyGroupDao
 		getSqlSession().insert("insertOfStudyGroup", map);
 	}
 	@Override
+	public void insertOfStudyGroupByDto(StudyGroupDto dto) {
+		// TODO Auto-generated method stub
+		getSqlSession().insert("insertOfStudyGroupByDto", dto);
+	}
+	@Override
 	public int selectCountOfStudyGroupPeoples(int studygroup_study_num) {
 		// TODO Auto-generated method stub
 		return getSqlSession().selectOne("selectCountOfStudyGroupPeoples", studygroup_study_num);

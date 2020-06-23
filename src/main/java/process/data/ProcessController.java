@@ -60,6 +60,7 @@ public class ProcessController {
 	@Autowired
 	private MemberServiceInter memberService;
 	
+	
 	@GetMapping("/process/searchTeacher")
 	public List<MemberDto> searchTeacher()
 	{
@@ -164,7 +165,8 @@ public class ProcessController {
 		
 		ProcessDto processdto = service.selectOneProcess(process_num);
 		List<ProcessFilesDto> processfiles = service.processFilesList(process_num);
-		List<BooksDto> books = booksService.processBooks(process_num);
+		List<BooksDto> books = 
+				booksService.processBooks(process_num);
 		
 		System.out.println("processdto_subject : "+processdto.getProcess_subject() );
 		System.out.println("files size : " + processfiles.size());
@@ -210,6 +212,7 @@ public class ProcessController {
 	@GetMapping("process/delete")
 	public void deleteProcess(HttpServletRequest request, int process_num)
 	{
+		System.out.println("react >> delete");
 		String path = request.getSession().getServletContext().getRealPath("/WEB-INF/uploadfile");
 				
 		List<ProcessFilesDto> processfilesdto = service.processFilesList(process_num);
@@ -231,6 +234,94 @@ public class ProcessController {
 		booksService.deleteBooks(process_num);
 		service.deleteProcessFiles(process_num);
 		service.deleteProcess(process_num);
+	}
+	
+	@GetMapping("/process/updateform")
+	public Map<String,Object> updateProcessForm(@RequestParam int process_num)
+	{
+		System.out.println("react >> process/updateProcessForm");
+		Map<String,Object> process = new HashMap<String,Object>();
+		
+		ProcessDto processdto = service.selectOneProcess(process_num);
+		List<ProcessFilesDto> processfiles = service.processFilesList(process_num);
+		List<BooksDto> books = booksService.processBooks(process_num);
+		
+		
+		process.put("processdto",processdto);
+		process.put("processfiles",processfiles);
+		process.put("books",books);
+		
+		return process;
+	}
+	
+	@GetMapping("/process/deletefiles")
+	public void deletefiles(HttpServletRequest request,@RequestParam List<String> deleteBooks,@RequestParam List<String> deleteImage)
+	{
+		System.out.println("react >> deleteBooks");
+		System.out.println("books size:"+deleteBooks.size());
+		System.out.println("images size :"+deleteImage.size());
+		
+		if(deleteBooks.size() > 0)
+		{
+			for(String deleteBooknum : deleteBooks)
+			{
+				booksService.deleteBooks(Integer.parseInt(deleteBooknum));
+			}			
+		}
+		
+		if(deleteImage.size() > 0)
+		{
+			String path = request.getSession().getServletContext().getRealPath("/WEB-INF/uploadfiles");
+			ManageFileClass mfc = new ManageFileClass();
+			for(String image : deleteImage)
+			{
+				ProcessFilesDto processfilesdto = service.getProcessImage(Integer.parseInt(image));
+				mfc.deleteFile(processfilesdto.getProcessfiles_process_filename(), path);
+				
+				service.deleteImage(Integer.parseInt(image));
+			}
+		}
+		
+	}
+	
+	@PostMapping("/process/update")
+	public void updateProcess(@ModelAttribute ProcessDto processdto, HttpServletRequest request)
+	{
+		System.out.println("react >> update");
+		
+		//강사 이름 수정
+		String teachernum = processdto.getProcess_teacher();
+		MemberDto teacher = service.selectOneTeacher(teachernum);
+		processdto.setProcess_teachername(teacher.getMember_name());
+		ProcessClassDto processclassdto = new ProcessClassDto();
+		processclassdto.setProcessclass_process_num(processdto.getProcess_num());
+		processclassdto.setProcessclass_member_num(Integer.parseInt(teachernum));
+		
+		processClassService.updateTeacherNum(processclassdto);
+		
+		//파일이 추가된게 있다면 추가,테이블에도 추가
+		if(processdto.getProcess_uploadfiles() != null)
+		{
+			ManageFileClass mfc = new ManageFileClass();
+			String path = request.getSession().getServletContext().getRealPath("/WEB-INF/uploadfile");
+			for(MultipartFile file : processdto.getProcess_uploadfiles())
+			{
+				String filename = file.getOriginalFilename();
+				mfc.fileUpload(filename, file, path, processdto.getProcess_num());
+				
+				ProcessFilesDto processfilesdto = new ProcessFilesDto();
+				
+				processfilesdto.setProcessfiles_process_num(processdto.getProcess_num());
+				processfilesdto.setProcessfiles_process_filename(filename);
+				service.insertProcessFiles(processfilesdto);
+			}
+		}
+		
+		
+		
+		
+		service.updateProcess(processdto);
+		
 	}
 	
 }

@@ -78,6 +78,24 @@ public class ProcessDao extends SqlSessionDaoSupport implements ProcessDaoInter{
 		getSqlSession().delete("deleteProcessFiles",process_num);
 	}
 
+	@Override
+	public void updateProcess(ProcessDto processdto) {
+		// TODO Auto-generated method stub
+		getSqlSession().update("updateProcess", processdto);
+	}
+
+	@Override
+	public void deleteImage(int processfiles_num) {
+		// TODO Auto-generated method stub
+		getSqlSession().delete("deleteImage",processfiles_num);
+	}
+
+	@Override
+	public ProcessFilesDto getProcessImage(int processfiles_num) {
+		// TODO Auto-generated method stub
+		return getSqlSession().selectOne("getProcessImage",processfiles_num);
+	}
+
 	
 
 	

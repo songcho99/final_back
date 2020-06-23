@@ -4,4 +4,7 @@
 	<insert id="insertProcessClass" parameterType="processclassdto">
 		insert into processclass (processclass_process_num,processclass_member_num,processclass_member_type) values (#{processclass_process_num},#{processclass_member_num},#{processclass_member_type})
 	</insert>
+	<update id="updateTeacherNum" parameterType="processclassdto">
+		update processclass set processclass_member_num = #{processclass_member_num} where processclass_process_num = #{processclass_process_num}
+	</update>
 </mapper>

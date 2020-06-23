@@ -20,4 +20,7 @@ public interface ProcessServiceInter {
 	public void deleteProcess(int process_num);
 	public void deleteProcessFiles(int process_num);
 	
+	public void updateProcess(ProcessDto processdto);
+	public ProcessFilesDto getProcessImage(int processfiles_num);
+	public void deleteImage(int processfiles_num);
 }

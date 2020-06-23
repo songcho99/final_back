@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -79,12 +80,22 @@ public class StudyController {
 
 		List<StudyDto> list = studyservice.selectOfStudyList();
 		List<String> profilelist = new ArrayList<String>();
+		List<Integer> countlist = new ArrayList<Integer>();
 		map.put("listdata", list);
 		for(int i = 0; i < list.size(); i++) {
 			profilelist.add(i,memberservice.selectOneMember(list.get(i).getStudy_member_num()).getMember_profile());
+			countlist.add(i, studygroupservice.selectCountOfStudyGroupPeoples(list.get(i).getStudy_num()));
 		}
 		map.put("profilelist", profilelist);
+		map.put("countlist", countlist);
 		
 		return map;
+	}
+	
+	@GetMapping("/study/detail")
+	public StudyDto selectOfStudyDtail(@RequestParam int study_num) {
+		StudyDto dto = studyservice.selectOfStudyByNum(study_num);
+		
+		return dto;
 	}
 }

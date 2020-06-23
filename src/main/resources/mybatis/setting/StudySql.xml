@@ -10,4 +10,7 @@
 	<select id="selectNumOfNewestStudy" resultType="int">
 		SELECT MAX(study_num) FROM study
 	</select>
+	<select id="selectOfStudyByNum" parameterType="int" resultType="studydto">
+		SELECT * FROM study WHERE study_num = #{study_num}
+	</select>
 </mapper>

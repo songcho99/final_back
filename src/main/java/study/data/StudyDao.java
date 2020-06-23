@@ -22,4 +22,9 @@ public class StudyDao extends SqlSessionDaoSupport implements StudyDaoInter {
 		// TODO Auto-generated method stub
 		return getSqlSession().selectOne("selectNumOfNewestStudy");
 	}
+	@Override
+	public StudyDto selectOfStudyByNum(int study_num) {
+		// TODO Auto-generated method stub
+		return getSqlSession().selectOne("selectOfStudyByNum", study_num);
+	}
 }

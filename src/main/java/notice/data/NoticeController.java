@@ -44,7 +44,9 @@ public class NoticeController {
 		{
 			if(list.get(i).getNotice_type()==1)
 			{
-				list.get(i).setNoti_type("[공지]");
+				list.get(i).setNoti_type("공지");
+			}else {
+				list.get(i).setNoti_type("일반");
 			}
 		}
 		return list;
@@ -73,7 +75,9 @@ public class NoticeController {
 		}
 		
 		//top
-		ndao.updateNoticetype(maxNum);
+		System.out.println("add notice_type="+ndto.getNotice_type());
+		if(ndto.getNotice_type()==1)
+			ndao.updateNoticetype(1,maxNum);
 		
 	}
 	
@@ -85,6 +89,7 @@ public class NoticeController {
 		ndao.readCount(num);
 		NoticeDto dto=ndao.getNotice(num);
 		System.out.println(dto);
+		System.out.println(dto.getNotice_type());
 		return dto;
 	}
 	//선택 조회 -파일
@@ -125,6 +130,7 @@ public class NoticeController {
 					MultipartHttpServletRequest request)
 	{
 		System.out.println("react>>noticeupdate");
+		System.out.println(ndto.getNotice_type());
 		//업로드한 경로
 		String path=request.getSession().getServletContext().getRealPath("/WEB-INF/uploadfile");
 		if(ndto.getNotice_file()!=null)
@@ -140,7 +146,7 @@ public class NoticeController {
 		}
 		//notice update
 		ndao.updateNotice(ndto);
-		ndao.updateNoticetype(ndto.getNotice_num());
+		ndao.updateNoticetype(ndto.getNotice_type(),ndto.getNotice_num());
 		System.out.println("notice_delfile="+ndto.getNotice_delfile());
 		//delete removed file
 		if(ndto.getNotice_delfile()!=null)

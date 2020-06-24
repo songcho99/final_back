@@ -1,10 +1,13 @@
 package studygroup.data;
 
 import java.util.HashMap;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
+
+import study.data.StudyDto;
 
 @Repository
 @Service
@@ -26,5 +29,25 @@ public class StudyGroupService implements StudyGroupServiceInter {
 	public int selectCountOfStudyGroupPeoples(int studygroup_study_num) {
 		// TODO Auto-generated method stub
 		return dao.selectCountOfStudyGroupPeoples(studygroup_study_num);
+	}
+	@Override
+	public int selectOfStudyGroupParticipationState(HashMap<String, Integer> map) {
+		// TODO Auto-generated method stub
+		return dao.selectOfStudyGroupParticipationState(map);
+	}
+	@Override
+	public List<StudyDto> selectOfStudyGroupParticipation(int studygroup_member_num) {
+		// TODO Auto-generated method stub
+		return dao.selectOfStudyGroupParticipation(studygroup_member_num);
+	}
+	@Override
+	public int selectOfZeroCheckByStudyGroup(int study_num) {
+		// TODO Auto-generated method stub
+		return dao.selectOfZeroCheckByStudyGroup(study_num);
+	}
+	@Override
+	public void deleteOfStudyGroup(StudyGroupDto dto) {
+		// TODO Auto-generated method stub
+		dao.deleteOfStudyGroup(dto);
 	}
 }

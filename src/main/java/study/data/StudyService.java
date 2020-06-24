@@ -32,4 +32,14 @@ public class StudyService implements StudyServiceInter {
 		// TODO Auto-generated method stub
 		return dao.selectOfStudyByNum(study_num);
 	}
+	@Override
+	public List<StudyDto> selectOfStudyFounder(int study_member_num) {
+		// TODO Auto-generated method stub
+		return dao.selectOfStudyFounder(study_member_num);
+	}
+	@Override
+	public void deleteOfStudy(int study_num) {
+		// TODO Auto-generated method stub
+		dao.deleteOfStudy(study_num);
+	}
 }

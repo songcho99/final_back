@@ -6,6 +6,8 @@ public class StudyApplyDto {
 	private int studyapply_num;
 	private int studyapply_member_num;
 	private int studyapply_study_num;
+	private String member_name;
+	private String member_phone;
 	private String studyapply_mylevel;
 	private String studyapply_comment;
 	private Timestamp studyapply_writeday;
@@ -27,6 +29,18 @@ public class StudyApplyDto {
 	}
 	public void setStudyapply_study_num(int studyapply_study_num) {
 		this.studyapply_study_num = studyapply_study_num;
+	}
+	public String getMember_name() {
+		return member_name;
+	}
+	public void setMember_name(String member_name) {
+		this.member_name = member_name;
+	}
+	public String getMember_phone() {
+		return member_phone;
+	}
+	public void setMember_phone(String member_phone) {
+		this.member_phone = member_phone;
 	}
 	public String getStudyapply_mylevel() {
 		return studyapply_mylevel;
@@ -50,8 +64,9 @@ public class StudyApplyDto {
 	@Override
 	public String toString() {
 		return "StudyApplyDto [studyapply_num=" + studyapply_num + ", studyapply_member_num=" + studyapply_member_num
-				+ ", studyapply_study_num=" + studyapply_study_num + ", studyapply_mylevel=" + studyapply_mylevel
-				+ ", studyapply_comment=" + studyapply_comment + ", studyapply_writeday=" + studyapply_writeday + "]";
+				+ ", studyapply_study_num=" + studyapply_study_num + ", member_name=" + member_name + ", member_phone="
+				+ member_phone + ", studyapply_mylevel=" + studyapply_mylevel + ", studyapply_comment="
+				+ studyapply_comment + ", studyapply_writeday=" + studyapply_writeday + "]";
 	}
 	
 }

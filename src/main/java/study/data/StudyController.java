@@ -102,4 +102,11 @@ public class StudyController {
 		
 		return map;
 	}
+	
+	@GetMapping("/study/founder")
+	public List<StudyDto> selectOfStudyFounder(@RequestParam int study_member_num) {
+		List<StudyDto> list = studyservice.selectOfStudyFounder(study_member_num);
+		
+		return list;
+	}
 }

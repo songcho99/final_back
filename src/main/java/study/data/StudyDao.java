@@ -27,4 +27,14 @@ public class StudyDao extends SqlSessionDaoSupport implements StudyDaoInter {
 		// TODO Auto-generated method stub
 		return getSqlSession().selectOne("selectOfStudyByNum", study_num);
 	}
+	@Override
+	public List<StudyDto> selectOfStudyFounder(int study_member_num) {
+		// TODO Auto-generated method stub
+		return getSqlSession().selectList("selectOfStudyFounder", study_member_num);
+	}
+	@Override
+	public void deleteOfStudy(int study_num) {
+		// TODO Auto-generated method stub
+		getSqlSession().delete("deleteOfStudy", study_num);
+	}
 }

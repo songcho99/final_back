@@ -7,4 +7,6 @@ public interface StudyServiceInter {
 	public List<StudyDto> selectOfStudyList();
 	public int selectNumOfNewestStudy();
 	public StudyDto selectOfStudyByNum(int study_num);
+	public List<StudyDto> selectOfStudyFounder(int study_member_num);
+	public void deleteOfStudy(int study_num);
 }

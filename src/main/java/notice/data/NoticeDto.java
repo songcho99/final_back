@@ -95,9 +95,11 @@ public class NoticeDto {
 	public String toString() {
 		return "NoticeDto [notice_num=" + notice_num + ", notice_member_num=" + notice_member_num + ", notice_subject="
 				+ notice_subject + ", notice_content=" + notice_content + ", notice_readcount=" + notice_readcount
-				+ ", notice_file=" + notice_file + ", notice_filename=" + notice_filename + ", notice_writeday="
+				+ ", notice_file=" + notice_file + ", notice_delfile=" + notice_delfile + ", notice_type=" + notice_type
+				+ ", noti_type=" + noti_type + ", notice_filename=" + notice_filename + ", notice_writeday="
 				+ notice_writeday + "]";
 	}
+	
 	
 	
 

@@ -1,6 +1,8 @@
 package notice.data;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 import org.springframework.stereotype.Repository;
@@ -51,9 +53,12 @@ public class NoticeDao extends SqlSessionDaoSupport implements NoticeDaoInter{
 	}
 
 	@Override
-	public void updateNoticetype(int notice_num) {
+	public void updateNoticetype(int notice_type,int notice_num) {
 		// TODO Auto-generated method stub
-		getSqlSession().update("updateOfNoticetype", notice_num);
+		Map<String, Integer> map=new HashMap<String, Integer>();
+		map.put("notice_type", notice_type);
+		map.put("notice_num", notice_num);
+		getSqlSession().update("updateOfNoticetype", map);
 	}
 
 	

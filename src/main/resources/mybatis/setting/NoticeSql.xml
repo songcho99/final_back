@@ -30,7 +30,7 @@
 		update notice set notice_readcount=notice_readcount+1 where notice_num=#{notice_num}
 	</update>
 	<!-- 공지 맨위로 -->
-	<update id="updateOfNoticetype" parameterType="int">
-		update notice set notice_type=1 where notice_num=#{notice_num}
+	<update id="updateOfNoticetype" parameterType="HashMap">
+		update notice set notice_type=#{notice_type} where notice_num=#{notice_num}
 	</update>
 </mapper>

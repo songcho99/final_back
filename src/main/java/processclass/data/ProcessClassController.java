@@ -42,9 +42,9 @@ public class ProcessClassController {
 		
 		ProcessDto processdto = processService.selectOneProcess(processclassdto.getProcessclass_process_num());
 		
+		
 		service.updateMemberType(processclassdto.getProcessclass_member_num(),processdto.getProcess_subject());
-		
-		
 		service.insertProcessClass(processclassdto);
+		
 	}
 }

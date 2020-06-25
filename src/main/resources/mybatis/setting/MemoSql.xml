@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="memo">
+	<select id="getMemoList" parameterType="int" resultType="memodto">
+		select * from memo where memo_member_num = #{member_num} order by memo_num desc
+	</select>
+	<insert id="insertMemo" parameterType="memodto">
+		insert into memo (memo_member_num,memo_content,memo_writeday) values (#{memo_member_num},#{memo_content},now())
+	</insert>
 </mapper>

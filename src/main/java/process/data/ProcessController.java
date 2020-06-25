@@ -107,7 +107,6 @@ public class ProcessController {
 		MemberDto teacher = service.selectOneTeacher(teachernum);
 		
 		processdto.setProcess_teachername(teacher.getMember_name());
-		processdto.setProcess_member_num(12);
 		
 		service.insertProcess(processdto);
 		System.out.println("insert ¼º°ø");
@@ -134,6 +133,7 @@ public class ProcessController {
 			String path = request.getSession().getServletContext().getRealPath("/WEB-INF/uploadfile");
 			System.out.println("path:"+path);
 			String nowdate = sdf.format(new Date());
+			
 			
 			for(MultipartFile uploadfile : processdto.getProcess_uploadfiles())
 			{

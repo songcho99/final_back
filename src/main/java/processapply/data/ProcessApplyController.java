@@ -35,7 +35,7 @@ public class ProcessApplyController {
 		
 		ProcessApplyDto applydto = service.selectProcessApply(member_num);
 		int count = 0;
-		if(applydto==null)
+		if(applydto!=null)
 			count = 1;
 		
 		return count;

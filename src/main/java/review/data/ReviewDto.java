@@ -2,6 +2,8 @@ package review.data;
 
 import java.sql.Timestamp;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class ReviewDto {
 	private int review_num;
 	private int review_member_num;
@@ -12,7 +14,10 @@ public class ReviewDto {
 	private int review_commu;
 	private String review_subject;
 	private String review_content;
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm")
 	private Timestamp review_writeday;
+	private String member_profile;
+	
 	
 	public int getReview_num() {
 		return review_num;
@@ -74,6 +79,26 @@ public class ReviewDto {
 	public void setReview_writeday(Timestamp review_writeday) {
 		this.review_writeday = review_writeday;
 	}
+	
+	
+	public String getMember_profile() {
+		return member_profile;
+	}
+	public void setMember_profile(String member_profile) {
+		this.member_profile = member_profile;
+	}
+	@Override
+	public String toString() {
+		return "ReviewDto [review_num=" + review_num + ", review_member_num=" + review_member_num
+				+ ", review_member_name=" + review_member_name + ", review_process=" + review_process
+				+ ", review_plans=" + review_plans + ", review_ready=" + review_ready + ", review_commu=" + review_commu
+				+ ", review_subject=" + review_subject + ", review_content=" + review_content + ", review_writeday="
+				+ review_writeday + ", member_profile=" + member_profile + "]";
+	}
+	
+
+	
+	
 	
 	
 }

@@ -42,4 +42,14 @@ public class StudyService implements StudyServiceInter {
 		// TODO Auto-generated method stub
 		dao.deleteOfStudy(study_num);
 	}
+	@Override
+	public void updateOfStudy(StudyDto dto) {
+		// TODO Auto-generated method stub
+		dao.updateOfStudy(dto);
+	}
+	@Override
+	public void updateOfStudyReadCount(int study_num) {
+		// TODO Auto-generated method stub
+		dao.updateOfStudyReadCount(study_num);
+	}
 }

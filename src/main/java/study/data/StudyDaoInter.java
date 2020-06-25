@@ -9,4 +9,6 @@ public interface StudyDaoInter {
 	public StudyDto selectOfStudyByNum(int study_num);
 	public List<StudyDto> selectOfStudyFounder(int study_member_num);
 	public void deleteOfStudy(int study_num);
+	public void updateOfStudy(StudyDto dto);
+	public void updateOfStudyReadCount(int study_num);
 }

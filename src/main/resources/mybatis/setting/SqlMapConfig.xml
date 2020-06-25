@@ -20,6 +20,7 @@
 		<typeAlias type="studygroup.data.StudyGroupDto" alias="studygroupdto"/>
 		<typeAlias type="process.data.ProcessListDto" alias="processlistdto" />
 		<typeAlias type="files.data.ProcessFilesDto" alias="processfilesdto" />
+		<typeAlias type="qna.data.QnaDto" alias="qnadto" />
 	</typeAliases>
 	<mappers>
 		<mapper resource="mybatis/setting/TestSql.xml"/>
@@ -37,7 +38,8 @@
 		<mapper resource="mybatis/setting/StudySql.xml"/>
 		<mapper resource="mybatis/setting/StudyApplySql.xml"/><!--  -->
 		<mapper resource="mybatis/setting/StudyFeedSql.xml"/>
-		<mapper resource="mybatis/setting/StudyGroupSql.xml"/> 		
+		<mapper resource="mybatis/setting/StudyGroupSql.xml"/> 
+		<mapper resource="mybatis/setting/QnaSql.xml"/>		
 		 
 	</mappers>
 </configuration>

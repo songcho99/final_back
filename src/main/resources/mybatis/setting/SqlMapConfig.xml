@@ -21,6 +21,7 @@
 		<typeAlias type="process.data.ProcessListDto" alias="processlistdto" />
 		<typeAlias type="files.data.ProcessFilesDto" alias="processfilesdto" />
 		<typeAlias type="review.data.ReviewDto" alias="reviewdto"/>
+		<typeAlias type="qna.data.QnaDto" alias="qnadto" />
 	</typeAliases>
 	<mappers>
 		<mapper resource="mybatis/setting/TestSql.xml"/>
@@ -40,6 +41,8 @@
 		<mapper resource="mybatis/setting/StudyFeedSql.xml"/>
 		<mapper resource="mybatis/setting/StudyGroupSql.xml"/> 	
 		<mapper resource="mybatis/setting/ReviewSql.xml"/>	
+		<mapper resource="mybatis/setting/StudyGroupSql.xml"/> 
+		<mapper resource="mybatis/setting/QnaSql.xml"/>		
 		 
 	</mappers>
 </configuration>

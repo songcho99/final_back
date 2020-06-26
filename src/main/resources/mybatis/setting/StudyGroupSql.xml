@@ -36,4 +36,10 @@
 		WHERE studygroup_study_num = #{studygroup_study_num} 
 		AND studygroup_member_num = #{studygroup_member_num}
 	</delete>
+	<select id="selectOfStudyMember" parameterType="int" resultType="memberdto">
+		SELECT a.member_name, a.member_profile
+		FROM member as a, studygroup as b
+		WHERE a.member_num = b.studygroup_member_num 
+		AND b.studygroup_study_num = #{studygroup_study_num}
+	</select>
 </mapper>

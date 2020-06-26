@@ -18,9 +18,9 @@ public class StudyService implements StudyServiceInter {
 		dao.insertStudy(dto);
 	}
 	@Override
-	public List<StudyDto> selectOfStudyList() {
+	public List<StudyDto> selectOfStudyList(StudySearchDto sdto) {
 		// TODO Auto-generated method stub
-		return dao.selectOfStudyList();
+		return dao.selectOfStudyList(sdto);
 	}
 	@Override
 	public int selectNumOfNewestStudy() {

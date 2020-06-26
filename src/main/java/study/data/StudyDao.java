@@ -1,6 +1,8 @@
 package study.data;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 import org.springframework.stereotype.Repository;
@@ -13,9 +15,22 @@ public class StudyDao extends SqlSessionDaoSupport implements StudyDaoInter {
 		getSqlSession().insert("insertOfStudy", dto);
 	}
 	@Override
-	public List<StudyDto> selectOfStudyList() {
+	public List<StudyDto> selectOfStudyList(StudySearchDto sdto) {
 		// TODO Auto-generated method stub
-		return getSqlSession().selectList("selectOfStudyList");
+		Map<String, Object> map = new HashMap<String, Object>();
+		if(sdto.getSearchSubject()!=null)
+		{
+			map.put("field", sdto.getField());
+			map.put("searchSubject", sdto.getSearchSubject());
+			map.put("searchLevel", sdto.getSearchLevel());
+			map.put("searchType",sdto.getSearchType());
+			map.put("searchStartdate", sdto.getSearchStartdate());
+			map.put("searchEnddate",sdto.getSearchEnddate());
+			map.put("searchGatherday", sdto.getSearchGatherday());
+			map.put("searchAddress",sdto.getSearchAddress());
+			map.put("searchDetailAddr",sdto.getSearchDetailAddr());
+		}
+		return getSqlSession().selectList("selectOfStudyList",map);
 	}
 	@Override
 	public int selectNumOfNewestStudy() {

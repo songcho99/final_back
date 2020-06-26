@@ -77,11 +77,12 @@ public class StudyController {
 		studygroupservice.insertStudyGroup(map);
 	}
 	
-	@GetMapping("/study/list")
-	public Map<String, Object> selectOfStudyList() {
+	@PostMapping("/study/list")
+	public Map<String, Object> selectOfStudyList(@ModelAttribute StudySearchDto sdto) {
+		System.out.println("field:"+sdto.getField());
 		Map<String, Object> map = new HashMap<String, Object>();
 
-		List<StudyDto> list = service.selectOfStudyList();
+		List<StudyDto> list = studyservice.selectOfStudyList(sdto);
 		List<String> profilelist = new ArrayList<String>();
 		List<Integer> countlist = new ArrayList<Integer>();
 		map.put("listdata", list);

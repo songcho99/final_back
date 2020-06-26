@@ -34,4 +34,13 @@
 	<delete id="deleteProcessFiles" parameterType="int">
 		delete from processfiles where processfiles_process_num=#{process_num}
 	</delete>
+	<update id="updateProcess" parameterType="processdto">
+		update process set process_type=#{process_type},process_subject=#{process_subject},process_intr=#{process_intr},process_peoples=#{process_peoples},process_startdate=#{process_startdate},process_enddate=#{process_enddate},process_teacher=#{process_teacher},process_teachername=#{process_teachername} where process_num = #{process_num}
+	</update>
+	<select id="getProcessImage" parameterType="int" resultType="processfilesdto">
+		select * from processfiles where processfiles_num = #{processfiles_num}
+	</select>
+	<delete id="deleteImage" parameterType="int">
+		delete from processfiles where processfiles_num = #{processfiles_num}
+	</delete>
 </mapper>

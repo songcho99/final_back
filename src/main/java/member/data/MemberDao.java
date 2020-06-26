@@ -125,6 +125,6 @@ public class MemberDao extends SqlSessionDaoSupport implements MemberDaoInter{
 		}
 		return getSqlSession().selectList("allOfMember", map);
 	}
-	
+
 
 }

@@ -33,4 +33,15 @@
 	<update id="updateOfNoticetype" parameterType="HashMap">
 		update notice set notice_type=#{notice_type} where notice_num=#{notice_num}
 	</update>
+	<!-- 공지사항 검색 -->
+	<select id="allOfNotice" parameterType="HashMap" resultType="noticedto">
+		select * from notice where 1=1 
+		<!-- <if test="type!=null and type!=''">
+			and notice_subject = #{notice_subject}
+		</if> -->
+		<if test="search!=null and search!=''">
+			and ${field} like concat('%',#{search},'%')
+		</if>
+		order by notice_type desc, notice_num desc
+		</select>
 </mapper>

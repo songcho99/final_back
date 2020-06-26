@@ -21,4 +21,6 @@ public interface QnaDaoInter {
 	public void updateQna(QnaDto dto);
 	//delete
 	public void deleteQna(int qna_num);
+	//QnA °Ë»ö
+	public List<QnaDto> allOfQna(String field,String search);
 }

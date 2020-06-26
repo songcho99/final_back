@@ -36,7 +36,7 @@ public class MemberController {
 	@Autowired
 	private JavaMailSender mailsender;
 	
-	//로그인
+	//濡쒓렇�씤
 	@PostMapping("/login/loginck")
 	public Map<String,Object> loginck(@RequestParam String member_id, @RequestParam String member_password
 			,@RequestParam(required=false) String idsave,HttpSession session)
@@ -62,7 +62,7 @@ public class MemberController {
 		}
 	}
 	
-	//아이디 중복확인
+	//�븘�씠�뵒 以묐났�솗�씤
 	@GetMapping("/member/idcheck")
 	public int idcheck(@RequestParam String id)
 	{
@@ -74,7 +74,7 @@ public class MemberController {
 		return idcheck;
 	}
 	
-	//회원가입 -회원 추가
+	//�쉶�썝媛��엯 -�쉶�썝 異붽�
 	@PostMapping("/member/insert")
 	public void insertMember(@RequestParam String member_name,
 			@RequestParam String member_id,
@@ -100,7 +100,7 @@ public class MemberController {
 		service.insertMember(memberdto);
 	}
 	
-	//아이디 찾기 위한 정보 확인
+	//�븘�씠�뵒 李얘린 �쐞�븳 �젙蹂� �솗�씤
 	@PostMapping("/check/checkId")
 	public int checkId(@RequestParam String member_name, String member_email, String member_phone)
 	{
@@ -114,7 +114,7 @@ public class MemberController {
 		return cnt;
 	}
 	
-	//비밀번호 재설정을 위한 정보 확인
+	//鍮꾨�踰덊샇 �옱�꽕�젙�쓣 �쐞�븳 �젙蹂� �솗�씤
 	@PostMapping("/check/checklogin")
 	public int checklogin(@RequestParam String member_name, String member_id, String member_phone)
 	{
@@ -128,7 +128,7 @@ public class MemberController {
 		return cnt;
 	}
 	
-	//비밀번호 재설정
+	//鍮꾨�踰덊샇 �옱�꽕�젙
 	@PostMapping("/check/updatepassword")
 	public void updatePassword(@RequestParam String member_id, String member_password)
 	{
@@ -136,7 +136,7 @@ public class MemberController {
 		service.updatePassword(member_id, member_password);
 	}
 	
-	//인증번호 문자 발송
+	//�씤利앸쾲�샇 臾몄옄 諛쒖넚
 	@PostMapping("/check/checknum")
 	public String checknum(@RequestParam String member_phone)
 	{
@@ -158,7 +158,7 @@ public class MemberController {
 		return randomsu;
 	}
 	
-	//아이디 메일 발송
+	//�븘�씠�뵒 硫붿씪 諛쒖넚
 	@PostMapping("/check/emailId")
 	public void emailId(@RequestParam String member_name, String member_email, String member_phone)
 	{
@@ -168,15 +168,15 @@ public class MemberController {
 		System.out.println(member_phone);
 		String member_id=service.selectId(member_name,member_email,member_phone);
 		String email_content=member_id.substring(0, member_id.length()-2)+"**";
-		String content="회원님의 Id는 "+email_content+"입니다.";
+		String content="회원님의 ID는 "+email_content+"입니다.";
 		
 		MimeMessage message=mailsender.createMimeMessage();
 		try {
 		
-			message.setSubject("IT Campus 아이디 확인");//메일제목
-			message.setText(content);//메일본문
-			message.setRecipients(MimeMessage.RecipientType.TO, InternetAddress.parse(member_email));//보낼 메일주소
-			mailsender.send(message);//메일전송
+			message.setSubject("IT Campus 아이디 확인");//硫붿씪�젣紐�
+			message.setText(content);//硫붿씪蹂몃Ц
+			message.setRecipients(MimeMessage.RecipientType.TO, InternetAddress.parse(member_email));//蹂대궪 硫붿씪二쇱냼
+			mailsender.send(message);//硫붿씪�쟾�넚
 
 		} catch (MessagingException e) {
 			// TODO Auto-generated catch block
@@ -186,7 +186,7 @@ public class MemberController {
 
 	}
 	
-	//멤버관리-출력
+	//硫ㅻ쾭愿�由�-異쒕젰
 	@GetMapping("/member/memberlist")
 	public List<MemberDto> list(@RequestParam(required=false) String type, @RequestParam(required=false) String field,
 			@RequestParam(required=false) String search)
@@ -200,7 +200,7 @@ public class MemberController {
 		return service.allOfMember(type,field, search);
 	}
 	
-	//멤버관리-삭제
+	//硫ㅻ쾭愿�由�-�궘�젣
 	@RequestMapping(value="/member/memberdelete",method=RequestMethod.DELETE)
 	public void delete(@RequestParam int member_num)
 	{

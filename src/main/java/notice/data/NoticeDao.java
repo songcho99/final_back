@@ -61,6 +61,18 @@ public class NoticeDao extends SqlSessionDaoSupport implements NoticeDaoInter{
 		getSqlSession().update("updateOfNoticetype", map);
 	}
 
+	@Override
+	public List<NoticeDto> allOfNotice(String field, String search) {
+		// TODO Auto-generated method stub
+		Map<String, String> map=new HashMap<String, String>();
+		if(search!=null)
+		{
+			map.put("field", field);
+			map.put("search", search);
+		}
+		return getSqlSession().selectList("allOfNotice",map);
+	}
+
 	
 
 }

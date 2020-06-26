@@ -37,9 +37,12 @@ public class NoticeController {
 	
 	//리스트 출력
 	@GetMapping("/notice/noticelist")
-	public List<NoticeDto> listNotice()
+	public List<NoticeDto> listNotice(@RequestParam(name = "field", required=false) String field,
+			@RequestParam(name = "search",required=false) String search)
 	{
-		List<NoticeDto> list=ndao.AllNotice();
+		System.out.println("field"+field);
+		System.out.println("search"+search);
+		List<NoticeDto> list=ndao.allOfNotice(field, search);
 		for(int i=0;i<list.size();i++)
 		{
 			if(list.get(i).getNotice_type()==1)

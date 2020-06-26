@@ -27,20 +27,18 @@ public class QnaController {
 	
 	//list
 	@GetMapping("/qna/qnalist")
-	public Map<String, Object> getlist()
+	public List<QnaDto> getlist(@RequestParam(name = "field", required=false) String field,
+			@RequestParam(name = "search",required=false) String search)
 	{
-		System.out.println("react>>QnA list");
-		Map<String, Object> map=new HashMap<String, Object>();
-		List<QnaDto> qlist=qdao.getAlllist();
-		map.put("qdto",qlist);
+		//search´Â ÀÌ¸§
 		
-		List<String> mlist=new Vector<String>();
-		for(int i=0;i<qlist.size();i++)
-		{
-			mlist.add(mdao.selectOneMember(qlist.get(i).getQna_member_num()).getMember_name());
-		}
-		map.put("member_name",mlist);
-		return map;
+		System.out.println("react>>QnA list");
+		System.out.println("field"+field);
+		System.out.println("search"+search);
+
+		List<QnaDto> qlist=qdao.allOfQna(field, search);
+		
+		return qlist;
 	}
 	
 	//add
@@ -48,6 +46,8 @@ public class QnaController {
 	public void insertQna(@ModelAttribute QnaDto dto)
 	{
 		System.out.println("react>>QnA add");
+		String qna_member_name=mdao.selectOneMember(dto.getQna_member_num()).getMember_name();
+		dto.setQna_member_name(qna_member_name);
 		qdao.insertQna(dto);
 	}
 	
@@ -58,8 +58,6 @@ public class QnaController {
 		System.out.println("react>>QnA detail");
 		qdao.updateReadCount(qna_num);
 		QnaDto qdto=qdao.getData(qna_num);
-		String member_name=mdao.selectOneMember(qdto.getQna_member_num()).getMember_name();
-		qdto.setQna_member_name(member_name);
 		return qdto;
 	}
 	

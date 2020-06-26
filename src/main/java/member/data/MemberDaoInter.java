@@ -13,6 +13,7 @@ public interface MemberDaoInter {
 	public MemberDto selectOneMember(int member_num);
 	//회원 id로 회원 조회
 	public MemberDto selectNameMember(String member_id);
+
 	//회원 검색
 	public MemberDto searchMember(String field, String searchtxt);
 	//회원 id있는지 조회

@@ -17,6 +17,10 @@
 	<select id="SelectOneOfMember" parameterType="int" resultType="memberdto">
 		select * from member where member_num = #{member_num}
 	</select>
+	<!-- 회원 name으로 회원 조회 -->
+	<select id="SelectOfMember" parameterType="String" resultType="int">
+		select member_num from member where member_name = #{member_name}
+	</select>
 	<!-- 회원 id로 회원 조회 -->
 	<select id="SelectNameofMemeber" parameterType="String" resultType="memberdto">
 		select * from member where member_id = #{member_id}
@@ -61,9 +65,9 @@
 	<!-- 회원관리 검색 -->
 	<select id="allOfMember" parameterType="HashMap" resultType="memberdto">
 		select * from member where 1=1 
-		<if test="type!=null and type!=''">
+	<!-- 	<if test="type!=null and type!=''">
 			and member_type = #{type}
-		</if>
+		</if> -->
 		<if test="search!=null and search!=''">
 			and ${field} like concat('%',#{search},'%')
 		</if>

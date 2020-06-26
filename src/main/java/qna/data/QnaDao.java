@@ -92,4 +92,16 @@ public class QnaDao extends SqlSessionDaoSupport implements QnaDaoInter {
 		getSqlSession().delete("deleteOfQna", qna_num);
 	}
 
+	@Override
+	public List<QnaDto> allOfQna(String field, String search) {
+		// TODO Auto-generated method stub
+		Map<String, String> map=new HashMap<String, String>();
+		if(search!=null)
+		{
+			map.put("field", field);
+			map.put("search", search);
+		}
+		return getSqlSession().selectList("allOfQna",map);
+	}
+
 }

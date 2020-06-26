@@ -21,8 +21,8 @@
 	</update>
 	<!-- insert -->
 	<insert id="insertOfQna" parameterType="qnadto">
-		insert into qna(qna_member_num, qna_subject, qna_content, qna_writeday, qna_regroup, qna_restep, qna_relevel)
-		values (#{qna_member_num},#{qna_subject},#{qna_content},now(),#{qna_regroup},#{qna_restep},#{qna_relevel})
+		insert into qna(qna_member_num,qna_member_name, qna_subject, qna_content, qna_writeday, qna_regroup, qna_restep, qna_relevel)
+		values (#{qna_member_num},#{qna_member_name},#{qna_subject},#{qna_content},now(),#{qna_regroup},#{qna_restep},#{qna_relevel})
 	</insert>
 	<!-- readcount -->
 	<update id="readCountOfQna" parameterType="int">
@@ -40,4 +40,15 @@
 	<delete id="deleteOfQna" parameterType="int">
 		delete from qna where qna_num=#{qna_num}
 	</delete>
+	<!-- 공지사항 검색 -->
+	<select id="allOfQna" parameterType="HashMap" resultType="qnadto">
+		select * from qna where 1=1 
+		<!-- <if test="type!=null and type!=''">
+			and notice_subject = #{notice_subject}
+		</if> -->
+		<if test="search!=null and search!=''">
+			and ${field} like concat('%',#{search},'%')
+		</if>
+		order by qna_regroup desc, qna_restep asc
+		</select>
 </mapper>

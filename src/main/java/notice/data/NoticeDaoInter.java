@@ -19,5 +19,6 @@ public interface NoticeDaoInter {
 	public void readCount(int notice_num);
 	//맨위로
 	public void updateNoticetype(int notice_type,int notice_num);
-	
+	//공지사항 검색
+	public List<NoticeDto> allOfNotice(String field,String search);
 }

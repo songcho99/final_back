@@ -1,6 +1,9 @@
 package studyfeed.data;
 
 import java.sql.Timestamp;
+import java.util.List;
+
+import org.springframework.web.multipart.MultipartFile;
 
 public class StudyFeedDto {
 	private int studyfeed_num;
@@ -8,7 +11,11 @@ public class StudyFeedDto {
 	private int studyfeed_member_num;
 	private String studyfeed_content;
 	private Timestamp studyfeed_writeday;
-	private int studyfeed_boardtype;
+	private int studyfeed_likes;
+	private List<MultipartFile> uploadfile;
+	private List<String> studyfeedfiles_studyfeed_filename;
+	private String member_name;
+	private String member_profile;
 	
 	public int getStudyfeed_num() {
 		return studyfeed_num;
@@ -40,18 +47,45 @@ public class StudyFeedDto {
 	public void setStudyfeed_writeday(Timestamp studyfeed_writeday) {
 		this.studyfeed_writeday = studyfeed_writeday;
 	}
-	public int getStudyfeed_boardtype() {
-		return studyfeed_boardtype;
+	public int getStudyfeed_likes() {
+		return studyfeed_likes;
 	}
-	public void setStudyfeed_boardtype(int studyfeed_boardtype) {
-		this.studyfeed_boardtype = studyfeed_boardtype;
+	public void setStudyfeed_likes(int studyfeed_likes) {
+		this.studyfeed_likes = studyfeed_likes;
+	}
+	public List<MultipartFile> getUploadfile() {
+		return uploadfile;
+	}
+	public void setUploadfile(List<MultipartFile> uploadfile) {
+		this.uploadfile = uploadfile;
+	}
+	public List<String> getStudyfeedfiles_studyfeed_filename() {
+		return studyfeedfiles_studyfeed_filename;
+	}
+	public void setStudyfeedfiles_studyfeed_filename(List<String> studyfeedfiles_studyfeed_filename) {
+		this.studyfeedfiles_studyfeed_filename = studyfeedfiles_studyfeed_filename;
+	}
+	public String getMember_name() {
+		return member_name;
+	}
+	public void setMember_name(String member_name) {
+		this.member_name = member_name;
+	}
+	public String getMember_profile() {
+		return member_profile;
+	}
+	public void setMember_profile(String member_profile) {
+		this.member_profile = member_profile;
 	}
 	
 	@Override
 	public String toString() {
 		return "StudyFeedDto [studyfeed_num=" + studyfeed_num + ", studyfeed_studygroup_num=" + studyfeed_studygroup_num
 				+ ", studyfeed_member_num=" + studyfeed_member_num + ", studyfeed_content=" + studyfeed_content
-				+ ", studyfeed_writeday=" + studyfeed_writeday + ", studyfeed_boardtype=" + studyfeed_boardtype + "]";
+				+ ", studyfeed_writeday=" + studyfeed_writeday + ", studyfeed_likes=" + studyfeed_likes
+				+ ", uploadfile=" + uploadfile + ", studyfeedfiles_studyfeed_filename="
+				+ studyfeedfiles_studyfeed_filename + ", member_name=" + member_name + ", member_profile="
+				+ member_profile + "]";
 	}
 	
 }

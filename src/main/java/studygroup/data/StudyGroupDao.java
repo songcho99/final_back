@@ -6,6 +6,7 @@ import java.util.List;
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 import org.springframework.stereotype.Repository;
 
+import member.data.MemberDto;
 import study.data.StudyDto;
 
 @Repository
@@ -44,5 +45,10 @@ public class StudyGroupDao extends SqlSessionDaoSupport implements StudyGroupDao
 	public void deleteOfStudyGroup(StudyGroupDto dto) {
 		// TODO Auto-generated method stub
 		getSqlSession().delete("deleteOfStudyGroup", dto);
+	}
+	@Override
+	public List<MemberDto> selectOfStudyMember(int studygroup_study_num) {
+		// TODO Auto-generated method stub
+		return getSqlSession().selectList("selectOfStudyMember", studygroup_study_num);
 	}
 }

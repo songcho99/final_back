@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
+import member.data.MemberDto;
 import study.data.StudyDto;
 
 @Repository
@@ -49,5 +50,10 @@ public class StudyGroupService implements StudyGroupServiceInter {
 	public void deleteOfStudyGroup(StudyGroupDto dto) {
 		// TODO Auto-generated method stub
 		dao.deleteOfStudyGroup(dto);
+	}
+	@Override
+	public List<MemberDto> selectOfStudyMember(int studygroup_study_num) {
+		// TODO Auto-generated method stub
+		return dao.selectOfStudyMember(studygroup_study_num);
 	}
 }

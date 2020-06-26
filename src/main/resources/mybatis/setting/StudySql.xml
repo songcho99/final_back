@@ -15,28 +15,29 @@
 	<select id="selectOfStudyList" parameterType="studysearchdto" resultType="studydto">
 		SELECT * FROM study where 1=1
 		<if test="searchSubject!=null and searchSubject!=''">
-			and ${field} like concat('%',#{searchSubject},'%')
+			and ${textfield} like concat('%',#{searchSubject},'%')
 		</if>
 		<if test ="searchLevel!=null and searchLevel!=''">
-			and ${searchLevel} = #{searchLevel}
+			and study_level = #{searchLevel}
 		</if>
 		<if test="searchType!=null and searchType!=''">
-			and ${searchType} = #{searchType}
+			and study_type = #{searchType}
 		</if>
-		<if test="searchStartdate!=null and searchStartdate!=''">
-			and ${searchStartdate}=#{searchStartdate}
+		 <if test="searchStartdate!=null and searchStartdate!=''">
+			and study_startdate=#{searchStartdate}
 		</if>
-		<if test="searchEnddate!=null and searchEnddate!=''">
-			and ${searchEnddate}=#{searchEnddate}
-		</if>
-		<if test="searchGatherday!=null and searchGatherday!=''">
-			and ${searchGatherday}=#{searchGatherday}
-		</if>
+		
+		<!-- <if test="searchEnddate!=null and searchEnddate!=''">
+			and study_enddate=#{searchEnddate}
+		 </if> 
+		 <if test="searchGatherday!=null and searchGatherday!=''">
+			and study_gatherday=#{searchGatherday}
+		</if>-->
 		<if test="searchAddress!=null and searchAddress!=''">
-			and ${searchAddress}=#{searchAddress}
+			and study_address=#{searchAddress}
 		</if>
 		<if test="searchDetailAddr!=null and searchDetailAddr!=''">
-			and ${searchDetailAddr}=#{searchDetailAddr}
+			and study_detailaddr=#{searchDetailAddr}
 		</if>
 	</select>
 	<select id="selectNumOfNewestStudy" resultType="int">

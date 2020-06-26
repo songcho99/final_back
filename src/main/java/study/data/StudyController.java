@@ -79,10 +79,11 @@ public class StudyController {
 	
 	@PostMapping("/study/list")
 	public Map<String, Object> selectOfStudyList(@ModelAttribute StudySearchDto sdto) {
-		System.out.println("field:"+sdto.getField());
+		System.out.println("field:"+sdto.getTextfield());
 		Map<String, Object> map = new HashMap<String, Object>();
-
-		List<StudyDto> list = studyservice.selectOfStudyList(sdto);
+		System.out.println(sdto.toString());
+		List<StudyDto> list = service.selectOfStudyList(sdto);
+		System.out.println(list.size());
 		List<String> profilelist = new ArrayList<String>();
 		List<Integer> countlist = new ArrayList<Integer>();
 		map.put("listdata", list);
@@ -124,7 +125,7 @@ public class StudyController {
 		File file = new File(path + "\\" + filename);
 		if(file.exists())
 			file.delete();
-		System.out.println("스터디 삭제");
+		System.out.println("�뒪�꽣�뵒 �궘�젣");
 	}
 	
 	@PostMapping("/study/update")
@@ -159,7 +160,7 @@ public class StudyController {
 				File oldfile = new File(path + "\\" + dto.getStudy_oldmainimage());
 				if(oldfile.exists())
 					oldfile.delete();
-				System.out.println("기존 이미지 제거");
+				System.out.println("湲곗〈 �씠誘몄� �젣嫄�");
 			}
 			System.out.println("filename="+filename);
 			sdto.setStudy_mainimage(filename);
@@ -169,6 +170,6 @@ public class StudyController {
 		
 		service.updateOfStudy(sdto);
 		
-		System.out.println("데이터 수정 성공");
+		System.out.println("�뜲�씠�꽣 �닔�젙 �꽦怨�");
 	}
 }

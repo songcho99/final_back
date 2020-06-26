@@ -20,7 +20,7 @@ public class StudyDao extends SqlSessionDaoSupport implements StudyDaoInter {
 		Map<String, Object> map = new HashMap<String, Object>();
 		if(sdto.getSearchSubject()!=null)
 		{
-			map.put("field", sdto.getField());
+			map.put("field", sdto.getTextfield());
 			map.put("searchSubject", sdto.getSearchSubject());
 			map.put("searchLevel", sdto.getSearchLevel());
 			map.put("searchType",sdto.getSearchType());

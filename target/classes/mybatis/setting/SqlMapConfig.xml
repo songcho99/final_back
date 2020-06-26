@@ -15,6 +15,7 @@
 		<typeAlias type="processclass.data.ProcessClassDto" alias="processclassdto"/>
 		<typeAlias type="reply.data.ReplyDto" alias="replydto"/>
 		<typeAlias type="study.data.StudyDto" alias="studydto"/>
+		<typeAlias type="study.data.StudySearchDto" alias="studysearchdto"/>
 		<typeAlias type="studyapply.data.StudyApplyDto" alias="studyapplydto"/>
 		<typeAlias type="studyfeed.data.StudyFeedDto" alias="studyfeeddto"/>
 		<typeAlias type="studygroup.data.StudyGroupDto" alias="studygroupdto"/>

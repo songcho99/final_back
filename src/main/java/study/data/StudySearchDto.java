@@ -4,7 +4,7 @@ import java.util.List;
 
 public class StudySearchDto {
 
-	private List<String> field;
+	private String textfield;
 	private String searchSubject;
 	private String searchLevel;
 	private String searchType;
@@ -13,12 +13,7 @@ public class StudySearchDto {
 	private String searchGatherday;
 	private String searchAddress;
 	private String searchDetailAddr;
-	public List<String> getField() {
-		return field;
-	}
-	public void setField(List<String> field) {
-		this.field = field;
-	}
+	
 	public String getSearchSubject() {
 		return searchSubject;
 	}
@@ -67,10 +62,19 @@ public class StudySearchDto {
 	public void setSearchDetailAddr(String searchDetailAddr) {
 		this.searchDetailAddr = searchDetailAddr;
 	}
-	
-	
-	
-	
+	public String getTextfield() {
+		return textfield;
+	}
+	public void setTextfield(String textfield) {
+		this.textfield = textfield;
+	}
+	@Override
+	public String toString() {
+		return "StudySearchDto [textfield=" + textfield + ", searchSubject=" + searchSubject + ", searchLevel="
+				+ searchLevel + ", searchType=" + searchType + ", searchStartdate=" + searchStartdate
+				+ ", searchEnddate=" + searchEnddate + ", searchGatherday=" + searchGatherday + ", searchAddress="
+				+ searchAddress + ", searchDetailAddr=" + searchDetailAddr + "]";
+	}
 	
 	
 }

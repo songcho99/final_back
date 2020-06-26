@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -74,11 +75,12 @@ public class StudyController {
 		studygroupservice.insertStudyGroup(map);
 	}
 	
-	@GetMapping("/study/list")
-	public Map<String, Object> selectOfStudyList() {
+	@PostMapping("/study/list")
+	public Map<String, Object> selectOfStudyList(@ModelAttribute StudySearchDto sdto) {
+		System.out.println("field:"+sdto.getField());
 		Map<String, Object> map = new HashMap<String, Object>();
 
-		List<StudyDto> list = studyservice.selectOfStudyList();
+		List<StudyDto> list = studyservice.selectOfStudyList(sdto);
 		List<String> profilelist = new ArrayList<String>();
 		List<Integer> countlist = new ArrayList<Integer>();
 		map.put("listdata", list);

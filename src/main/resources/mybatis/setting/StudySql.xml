@@ -12,8 +12,32 @@
 		#{study_progress},#{study_address},#{study_detailaddr},
 		#{study_mainimage},now(),#{study_writer})
 	</insert>
-	<select id="selectOfStudyList" resultType="studydto">
-		SELECT * FROM study ORDER BY study_writeday DESC
+	<select id="selectOfStudyList" parameterType="studysearchdto" resultType="studydto">
+		SELECT * FROM study where 1=1
+		<if test="searchSubject!=null and searchSubject!=''">
+			and ${field} like concat('%',#{searchSubject},'%')
+		</if>
+		<if test ="searchLevel!=null and searchLevel!=''">
+			and ${searchLevel} = #{searchLevel}
+		</if>
+		<if test="searchType!=null and searchType!=''">
+			and ${searchType} = #{searchType}
+		</if>
+		<if test="searchStartdate!=null and searchStartdate!=''">
+			and ${searchStartdate}=#{searchStartdate}
+		</if>
+		<if test="searchEnddate!=null and searchEnddate!=''">
+			and ${searchEnddate}=#{searchEnddate}
+		</if>
+		<if test="searchGatherday!=null and searchGatherday!=''">
+			and ${searchGatherday}=#{searchGatherday}
+		</if>
+		<if test="searchAddress!=null and searchAddress!=''">
+			and ${searchAddress}=#{searchAddress}
+		</if>
+		<if test="searchDetailAddr!=null and searchDetailAddr!=''">
+			and ${searchDetailAddr}=#{searchDetailAddr}
+		</if>
 	</select>
 	<select id="selectNumOfNewestStudy" resultType="int">
 		SELECT MAX(study_num) FROM study

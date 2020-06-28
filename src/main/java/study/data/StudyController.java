@@ -40,26 +40,23 @@ public class StudyController {
 	public void insertStudy(
 				@ModelAttribute StudyDto dto, HttpServletRequest request
 			) {
-		StudyDto sdto = new StudyDto();
 		String gather = "";
-		
-		sdto.setStudy_type(dto.getStudy_type());
-		sdto.setStudy_subject(dto.getStudy_subject());
-		sdto.setStudy_member_num(dto.getStudy_member_num());
-		sdto.setStudy_startdate(dto.getStudy_startdate());
-		sdto.setStudy_enddate(dto.getStudy_enddate());
-		for(String s:dto.getStudy_gatherdayname())
-			gather += s;
+		for(String s:dto.getStudy_gatherdayname()) {
+			if(s.equals(""))
+			{
+				gather+=s;
+			}else {				
+				gather += s+",";			
+			}	
+		}
 		System.out.println(gather);
-		sdto.setStudy_gatherday(gather);
-		sdto.setStudy_peoples(dto.getStudy_peoples());
-		sdto.setStudy_level(dto.getStudy_level());
-		sdto.setStudy_intr(dto.getStudy_intr());
-		sdto.setStudy_goal(dto.getStudy_goal());
-		sdto.setStudy_progress(dto.getStudy_progress());
-		sdto.setStudy_address(dto.getStudy_address());
-		sdto.setStudy_detailaddr(dto.getStudy_detailaddr());
-		sdto.setStudy_writer(dto.getStudy_writer());
+		if(gather.substring(gather.length()-1).equals(",")) {
+			gather=gather.substring(0, gather.length()-1);			
+		}
+		else {
+			
+		}
+		dto.setStudy_gatherday(gather);
 		
 		SpringFileWrite sfw = new SpringFileWrite();
 		MultipartFile file = dto.getUploadfile();
@@ -67,11 +64,11 @@ public class StudyController {
 		System.out.println("path="+path);
 		String filename = sfw.writeFile(file, path);
 		System.out.println("filename="+filename);
-		sdto.setStudy_mainimage(filename);
+		dto.setStudy_mainimage(filename);
 		
 		HashMap<String, Integer> map = new HashMap<String, Integer>();
 		
-		service.insertStudy(sdto);
+		service.insertStudy(dto);
 		map.put("studygroup_study_num", service.selectNumOfNewestStudy());
 		map.put("studygroup_member_num", dto.getStudy_writer_num());
 		studygroupservice.insertStudyGroup(map);

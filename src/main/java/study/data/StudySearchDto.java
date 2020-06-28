@@ -10,7 +10,7 @@ public class StudySearchDto {
 	private String searchType;
 	private String searchStartdate;
 	private String searchEnddate;
-	private String searchGatherday;
+	private List<String> searchGatherday;
 	private String searchAddress;
 	private String searchDetailAddr;
 	
@@ -44,10 +44,10 @@ public class StudySearchDto {
 	public void setSearchEnddate(String searchEnddate) {
 		this.searchEnddate = searchEnddate;
 	}
-	public String getSearchGatherday() {
+	public List<String> getSearchGatherday() {
 		return searchGatherday;
 	}
-	public void setSearchGatherday(String searchGatherday) {
+	public void setSearchGatherday(List<String> searchGatherday) {
 		this.searchGatherday = searchGatherday;
 	}
 	public String getSearchAddress() {

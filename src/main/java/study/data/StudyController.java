@@ -49,8 +49,8 @@ public class StudyController {
 		sdto.setStudy_startdate(dto.getStudy_startdate());
 		sdto.setStudy_enddate(dto.getStudy_enddate());
 		for(String s:dto.getStudy_gatherdayname())
-			gather += s + ", ";
-		gather = gather.substring(0, gather.length()-2);
+			gather += s;
+		System.out.println(gather);
 		sdto.setStudy_gatherday(gather);
 		sdto.setStudy_peoples(dto.getStudy_peoples());
 		sdto.setStudy_level(dto.getStudy_level());
@@ -141,8 +141,8 @@ public class StudyController {
 		sdto.setStudy_startdate(dto.getStudy_startdate());
 		sdto.setStudy_enddate(dto.getStudy_enddate());
 		for(String s:dto.getStudy_gatherdayname())
-			gather += s + ", ";
-		gather = gather.substring(0, gather.length()-2);
+			gather += s;
+		System.out.println(gather);
 		sdto.setStudy_gatherday(gather);
 		sdto.setStudy_peoples(dto.getStudy_peoples());
 		sdto.setStudy_level(dto.getStudy_level());

@@ -24,7 +24,9 @@
 			and study_type = #{searchType}
 		</if>
 		 <if test="searchStartdate!=null and searchStartdate!=''">
-			and study_startdate=#{searchStartdate}
+		 <![CDATA[
+			and study_startdate>=#{searchStartdate}
+			]]>
 		</if>
 		
 		<!-- <if test="searchEnddate!=null and searchEnddate!=''">
@@ -34,11 +36,11 @@
 			and study_gatherday in (#{searchGatherday})
 		</if>
 		<if test="searchAddress!=null and searchAddress!=''">
-			and study_address=#{searchAddress}
+			and study_address like concat('%',#{searchAddress},'%')
 		</if>
-		<if test="searchDetailAddr!=null and searchDetailAddr!=''">
-			and study_detailaddr=#{searchDetailAddr}
-		</if>
+		<!-- <if test="searchDetailAddr!=null and searchDetailAddr!=''">
+			and study_detailaddr like concat('%',#{searchDetailAddr},'%')
+		</if> -->
 	</select>
 	<select id="selectNumOfNewestStudy" resultType="int">
 		SELECT MAX(study_num) FROM study

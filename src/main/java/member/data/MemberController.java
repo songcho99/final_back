@@ -241,4 +241,11 @@ public class MemberController {
 		
 		service.updateMember(memberdto);
 	}
+	@PostMapping("/member/memberlistupdate")
+	public void updateOfMemberList(@RequestParam int member_num,@RequestParam String member_type)
+	{
+		System.out.println("react>>memberlist");
+		service.updateType(member_num, member_type);
+		
+	}
 }

@@ -74,4 +74,9 @@
 		order by member_num asc
 		<!-- limit #{start},#{end} -->
 	</select>
+	
+	<!-- 회원타입 변경 -->
+	<update id="updateTypeOfMember" parameterType="HashMap">
+		update member set member_type=#{member_type} where member_num=#{member_num}
+	</update>
 </mapper>

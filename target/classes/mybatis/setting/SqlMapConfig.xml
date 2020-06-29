@@ -30,6 +30,7 @@
 		 <mapper resource="mybatis/setting/MemberSql.xml"/>
 		<mapper resource="mybatis/setting/BooksSql.xml"/>
 		<mapper resource="mybatis/setting/ClassDataSql.xml"/>
+		<mapper resource="mybatis/setting/ClassDataFilesSql.xml"/>
 		<mapper resource="mybatis/setting/FilesSql.xml"/>
 		<mapper resource="mybatis/setting/MemoSql.xml"/>
 		<mapper resource="mybatis/setting/NoticeSql.xml"/>

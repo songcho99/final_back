@@ -18,6 +18,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import files.data.StudyFeedFilesDaoInter;
 import member.data.MemberDto;
+import reply.data.ReplyServiceInter;
 import studygroup.data.StudyGroupServiceInter;
 
 @RestController
@@ -31,6 +32,9 @@ public class StudyFeedController {
 	
 	@Autowired
 	private StudyGroupServiceInter groupservice;
+	
+	@Autowired
+	private ReplyServiceInter replyservice;
 	
 	@GetMapping("/studyfeed/member")
 	public Map<String, Object> getStudyMember(@RequestParam int studyfeed_studygroup_num) {
@@ -64,8 +68,8 @@ public class StudyFeedController {
 	}
 	
 	@GetMapping("/studyfeed/feedlist")
-	public List<StudyFeedDto> selectOfStudyFeedList() {
-		List<StudyFeedDto> list = service.selectOfStudyFeedList();
+	public List<StudyFeedDto> selectOfStudyFeedList(@RequestParam int studyfeed_studygroup_num) {
+		List<StudyFeedDto> list = service.selectOfStudyFeedList(studyfeed_studygroup_num);
 		
 		return list;
 	}

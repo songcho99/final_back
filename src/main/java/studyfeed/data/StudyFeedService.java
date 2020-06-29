@@ -23,8 +23,8 @@ public class StudyFeedService implements StudyFeedServiceInter {
 		return dao.maxNumOfStudyFeed();
 	}
 	@Override
-	public List<StudyFeedDto> selectOfStudyFeedList() {
+	public List<StudyFeedDto> selectOfStudyFeedList(int studyfeed_studygroup_num) {
 		// TODO Auto-generated method stub
-		return dao.selectOfStudyFeedList();
+		return dao.selectOfStudyFeedList(studyfeed_studygroup_num);
 	}
 }

@@ -25,11 +25,12 @@
 		studyfeed_content, studyfeed_writeday) 
 		VALUES (#{studyfeed_studygroup_num}, #{studyfeed_member_num}, #{studyfeed_content}, now())
 	</insert>
-	<select id="selectOfStudyFeedList" resultType="studyfeeddto">
+	<select id="selectOfStudyFeedList" parameterType="int" resultType="studyfeeddto">
 		SELECT a.member_name, a.member_profile, b.*
 		FROM member as a LEFT JOIN studyfeed as b 
 		ON a.member_num = b.studyfeed_member_num 
-        WHERE studyfeed_num IS NOT NULL
+        WHERE studyfeed_num IS NOT NULL 
+        AND studyfeed_studygroup_num = #{studyfeed_studygroup_num}
 		ORDER BY b.studyfeed_num DESC;
 	</select>
 </mapper>

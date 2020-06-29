@@ -18,8 +18,8 @@ public class StudyFeedDao extends SqlSessionDaoSupport implements StudyFeedDaoIn
 		return getSqlSession().selectOne("maxNumOfStudyFeed");
 	}
 	@Override
-	public List<StudyFeedDto> selectOfStudyFeedList() {
+	public List<StudyFeedDto> selectOfStudyFeedList(int studyfeed_studygroup_num) {
 		// TODO Auto-generated method stub
-		return getSqlSession().selectList("selectOfStudyFeedList");
+		return getSqlSession().selectList("selectOfStudyFeedList", studyfeed_studygroup_num);
 	}
 }

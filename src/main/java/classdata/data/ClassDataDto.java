@@ -1,16 +1,27 @@
 package classdata.data;
 
 import java.sql.Timestamp;
+import java.util.List;
+
+import org.springframework.web.multipart.MultipartFile;
 
 public class ClassDataDto {
-	private int classdata_num;
-	private int classdata_processclass_num;
-	private int classdata_member_num;
-	private String classdata_subject;
-	private String classdata_content;
-	private int classdata_boardtype;
-	private Timestamp classdata_writeday;
+	int classdata_num;
+	int classdata_processclass_num;
+	int classdata_member_num;
+	String classdata_subject;
+	String classdata_content;
+	Timestamp classdata_writeday;
+	List<MultipartFile> classdata_files; 
+	String classdata_writer;
 	
+	
+	public List<MultipartFile> getClassdata_files() {
+		return classdata_files;
+	}
+	public void setClassdata_files(List<MultipartFile> classdata_files) {
+		this.classdata_files = classdata_files;
+	}
 	public int getClassdata_num() {
 		return classdata_num;
 	}
@@ -41,25 +52,31 @@ public class ClassDataDto {
 	public void setClassdata_content(String classdata_content) {
 		this.classdata_content = classdata_content;
 	}
-	public int getClassdata_boardtype() {
-		return classdata_boardtype;
-	}
-	public void setClassdata_boardtype(int classdata_boardtype) {
-		this.classdata_boardtype = classdata_boardtype;
-	}
 	public Timestamp getClassdata_writeday() {
 		return classdata_writeday;
 	}
 	public void setClassdata_writeday(Timestamp classdata_writeday) {
 		this.classdata_writeday = classdata_writeday;
 	}
-	
+	public String getClassdata_writer() {
+		return classdata_writer;
+	}
+	public void setClassdata_writer(String classdata_writer) {
+		this.classdata_writer = classdata_writer;
+	}
 	@Override
 	public String toString() {
 		return "ClassDataDto [classdata_num=" + classdata_num + ", classdata_processclass_num="
 				+ classdata_processclass_num + ", classdata_member_num=" + classdata_member_num + ", classdata_subject="
-				+ classdata_subject + ", classdata_content=" + classdata_content + ", classdata_boardtype="
-				+ classdata_boardtype + ", classdata_writeday=" + classdata_writeday + "]";
+				+ classdata_subject + ", classdata_content=" + classdata_content + ", classdata_writeday="
+				+ classdata_writeday + ", classdata_files=" + classdata_files + ", classdata_writer=" + classdata_writer
+				+ "]";
 	}
+	
+	
+	
+	
+	
+	
 	
 }

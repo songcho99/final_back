@@ -6,6 +6,7 @@
 		<typeAlias type="member.data.MemberDto" alias="memberdto"/>
 		<typeAlias type="books.data.BooksDto" alias="booksdto"/>
 		<typeAlias type="classdata.data.ClassDataDto" alias="classdatadto"/>
+		<typeAlias type="classdatafiles.data.ClassDataFilesDto" alias="classdatafilesdto"/>
 		<typeAlias type="files.data.FilesDto" alias="filesdto"/>
 		<typeAlias type="memo.data.MemoDto" alias="memodto"/>
 		<typeAlias type="notice.data.NoticeDto" alias="noticedto"/>

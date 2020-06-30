@@ -6,6 +6,8 @@ import java.util.Map;
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 import org.springframework.stereotype.Repository;
 
+import process.data.ProcessDto;
+
 @Repository
 public class ProcessClassDao extends SqlSessionDaoSupport implements ProcessClassDaoInter{
 
@@ -47,5 +49,9 @@ public class ProcessClassDao extends SqlSessionDaoSupport implements ProcessClas
 		return getSqlSession().selectOne("checkProcessClass",map);
 	}
 
-
+	@Override
+	public ProcessDto getClassPage(String member_num) {
+		// TODO Auto-generated method stub
+		return getSqlSession().selectOne("getClassPage",member_num);
+	}
 }

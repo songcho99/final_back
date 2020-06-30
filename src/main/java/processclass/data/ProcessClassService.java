@@ -3,6 +3,8 @@ package processclass.data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import process.data.ProcessDto;
+
 @Service
 public class ProcessClassService implements ProcessClassServiceInter{
 
@@ -32,6 +34,13 @@ public class ProcessClassService implements ProcessClassServiceInter{
 		// TODO Auto-generated method stub
 		return dao.checkProcessClass(processclass_process_num, processclass_member_num);
 	}
+
+	@Override
+	public ProcessDto getClassPage(String member_num) {
+		// TODO Auto-generated method stub
+		return dao.getClassPage(member_num);
+	}
+
 
 	
 

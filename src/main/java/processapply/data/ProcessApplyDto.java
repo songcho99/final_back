@@ -114,12 +114,13 @@ public class ProcessApplyDto {
 				+ ", processapply_process_subject=" + processapply_process_subject + ", processapply_member_phone="
 				+ processapply_member_phone + ", processapply_member_email=" + processapply_member_email
 				+ ", processapply_member_address=" + processapply_member_address + ", processapply_member_detailaddr="
-				+ processapply_member_detailaddr + ", processapply_process_num=" + processapply_process_num
-				+ ", processapply_applyreason=" + processapply_applyreason + ", processapply_acceptreason="
-				+ processapply_acceptreason + ", processapply_consulting=" + processapply_consulting
-				+ ", processapply_writeday=" + processapply_writeday + "]";
+				+ processapply_member_detailaddr + ", processapply_member_type=" + processapply_member_type
+				+ ", processapply_process_num=" + processapply_process_num + ", processapply_applyreason="
+				+ processapply_applyreason + ", processapply_acceptreason=" + processapply_acceptreason
+				+ ", processapply_consulting=" + processapply_consulting + ", processapply_writeday="
+				+ processapply_writeday + "]";
 	}
-	
+
 	
 	
 }

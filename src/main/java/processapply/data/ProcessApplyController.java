@@ -23,7 +23,7 @@ public class ProcessApplyController {
 	{
 		System.out.println("react >> insertProcessApply");
 		
-		System.out.println(processapplydto.getProcessapply_applyreason());
+		System.out.println(processapplydto);
 		
 		service.insertProcessApply(processapplydto);
 	}

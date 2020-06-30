@@ -1,5 +1,7 @@
 package classdata.data;
 
+import java.util.List;
+
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 import org.springframework.stereotype.Repository;
 
@@ -16,6 +18,31 @@ import org.springframework.stereotype.Repository;
 		public int selectMaxNum() {
 			// TODO Auto-generated method stub
 			return getSqlSession().selectOne("selectClassDataMaxnum");
+		}
+
+		@Override
+		public List<ClassDataDto> AllClassData() {
+			// TODO Auto-generated method stub
+			return getSqlSession().selectList("selectOfClassData");
+		}
+
+		@Override
+		public void updateClassData(ClassDataDto dto) {
+			// TODO Auto-generated method stub
+			getSqlSession().update("updateOfClassData",dto);
+			
+		}
+
+		@Override
+		public void deleteClassData(int classdata_num) {
+			// TODO Auto-generated method stub
+			getSqlSession().delete("deleteOfClassData",classdata_num);
+		}
+
+		@Override
+		public ClassDataDto selectOne(int classdata_num) {
+			// TODO Auto-generated method stub
+			return getSqlSession().selectOne("selectOneOfClassData", classdata_num);
 		}
 
 

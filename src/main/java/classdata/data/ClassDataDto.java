@@ -5,17 +5,28 @@ import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class ClassDataDto {
-	int classdata_num;
-	int classdata_processclass_num;
-	int classdata_member_num;
-	String classdata_subject;
-	String classdata_content;
-	Timestamp classdata_writeday;
-	List<MultipartFile> classdata_files; 
+	private int classdata_num;
+	private int classdata_processclass_num;
+	private int classdata_member_num;
+	private String classdata_subject;
+	private String classdata_content;
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm")
+	private Timestamp classdata_writeday;
+	private List<MultipartFile> classdata_files;
+	private List<String> classdata_delfiles;
 	String classdata_writer;
 	
 	
+	
+	public List<String> getClassdata_delfiles() {
+		return classdata_delfiles;
+	}
+	public void setClassdata_delfiles(List<String> classdata_delfiles) {
+		this.classdata_delfiles = classdata_delfiles;
+	}
 	public List<MultipartFile> getClassdata_files() {
 		return classdata_files;
 	}

@@ -11,4 +11,21 @@
 	<select id="selectClassDataMaxnum" resultType="int">
 		select count(*) from classdata
 	</select>
+	
+	<select id="selectOneOfClassData" parameterType="int" resultType="classdatadto">
+		select * from classdata where classdata_num=#{classdata_num}
+	</select>
+	
+	<select id="selectOfClassData" resultType="classdatadto">
+		select * from classdata order by classdata_num desc
+	</select>
+	
+	<update id="updateOfClassData" parameterType="classdatadto">
+		update classdata set classdata_subject=#{classdata_subject},
+		classdata_content=#{classdata_content} where classdata_num=#{classdata_num}
+	</update>
+	
+	<delete id="deleteOfClassData" parameterType="int">
+		delete from classdata where classdata_num=#{classdata_num}
+	</delete>
 </mapper>

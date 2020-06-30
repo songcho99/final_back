@@ -11,7 +11,6 @@ public class StudyFeedDto {
 	private int studyfeed_member_num;
 	private String studyfeed_content;
 	private Timestamp studyfeed_writeday;
-	private int studyfeed_likes;
 	private List<MultipartFile> uploadfile;
 	private List<String> studyfeedfiles_studyfeed_filename;
 	private String member_name;
@@ -47,12 +46,6 @@ public class StudyFeedDto {
 	public void setStudyfeed_writeday(Timestamp studyfeed_writeday) {
 		this.studyfeed_writeday = studyfeed_writeday;
 	}
-	public int getStudyfeed_likes() {
-		return studyfeed_likes;
-	}
-	public void setStudyfeed_likes(int studyfeed_likes) {
-		this.studyfeed_likes = studyfeed_likes;
-	}
 	public List<MultipartFile> getUploadfile() {
 		return uploadfile;
 	}
@@ -82,10 +75,9 @@ public class StudyFeedDto {
 	public String toString() {
 		return "StudyFeedDto [studyfeed_num=" + studyfeed_num + ", studyfeed_studygroup_num=" + studyfeed_studygroup_num
 				+ ", studyfeed_member_num=" + studyfeed_member_num + ", studyfeed_content=" + studyfeed_content
-				+ ", studyfeed_writeday=" + studyfeed_writeday + ", studyfeed_likes=" + studyfeed_likes
-				+ ", uploadfile=" + uploadfile + ", studyfeedfiles_studyfeed_filename="
-				+ studyfeedfiles_studyfeed_filename + ", member_name=" + member_name + ", member_profile="
-				+ member_profile + "]";
+				+ ", studyfeed_writeday=" + studyfeed_writeday + ", uploadfile=" + uploadfile
+				+ ", studyfeedfiles_studyfeed_filename=" + studyfeedfiles_studyfeed_filename + ", member_name="
+				+ member_name + ", member_profile=" + member_profile + "]";
 	}
 	
 }

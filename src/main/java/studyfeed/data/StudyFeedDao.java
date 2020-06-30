@@ -1,5 +1,6 @@
 package studyfeed.data;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.mybatis.spring.support.SqlSessionDaoSupport;
@@ -18,8 +19,18 @@ public class StudyFeedDao extends SqlSessionDaoSupport implements StudyFeedDaoIn
 		return getSqlSession().selectOne("maxNumOfStudyFeed");
 	}
 	@Override
-	public List<StudyFeedDto> selectOfStudyFeedList(int studyfeed_studygroup_num) {
+	public List<StudyFeedDto> selectOfStudyFeedList(HashMap<String, Integer> map) {
 		// TODO Auto-generated method stub
-		return getSqlSession().selectList("selectOfStudyFeedList", studyfeed_studygroup_num);
+		return getSqlSession().selectList("selectOfStudyFeedList", map);
+	}
+	@Override
+	public void updateOfStudyFeed(StudyFeedDto dto) {
+		// TODO Auto-generated method stub
+		getSqlSession().update("updateOfStudyFeed", dto);
+	}
+	@Override
+	public void deleteOfStudyFeed(int studyfeed_num) {
+		// TODO Auto-generated method stub
+		getSqlSession().delete("deleteOfStudyFeed", studyfeed_num);
 	}
 }

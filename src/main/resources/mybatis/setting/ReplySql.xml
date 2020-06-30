@@ -2,28 +2,18 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="reply">
 	<insert id="insertOfReply" parameterType="replydto">
-		INSERT INTO reply(reply_member_num,reply_studyfeed_num,reply_content,reply_writeday,reply_regroup,reply_restep,reply_relevel)
-		VALUES (#{reply_member_num},#{reply_studyfeed_num},#{reply_content},now(),#{reply_regroup},#{reply_restep},#{reply_relevel})
+		INSERT INTO reply(reply_member_num,reply_studyfeed_num,reply_content,reply_writeday)
+		VALUES (#{reply_member_num},#{reply_studyfeed_num},#{reply_content},now())
 	</insert>
-	<select id="selectOfReplyMaxnum" resultType="int">
-		SELECT IFNULL(MAX(reply_num),0) from reply
-	</select>
-	<update id="updateRestepOfReply" parameterType="HashMap">
-		<![CDATA[
-		UPDATE reply SET reply_restep = reply_restep + 1 
-		WHERE reply_regroup = #{reply_regroup} 
-		AND reply_restep > #{reply_restep}
-		]]>
-	</update>
 	<select id="selectOfReply" resultType="replydto">
 		SELECT a.member_name, a.member_profile, c.* 
 		FROM member as a, studyfeed as b, reply as c
 		WHERE c.reply_num IS NOT NULL 
         AND b.studyfeed_num = c.reply_studyfeed_num
         AND a.member_num = c.reply_member_num
-		ORDER BY c.reply_regroup ASC, c.reply_restep ASC;
+		ORDER BY c.reply_writeday asc;
 	</select>
-	<!-- <select id="totalCountOfReply" resultType="int">
-		SELECT count(*) as count FROM reply WHERE 
-	</select> -->
+	<delete id="deleteOfReply" parameterType="int">
+		DELETE FROM reply WHERE reply_num = #{reply_num}
+	</delete>
 </mapper>

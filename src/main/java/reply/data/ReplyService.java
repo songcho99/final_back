@@ -19,20 +19,14 @@ public class ReplyService implements ReplyServiceInter {
 	}
 	
 	@Override
-	public int selectOfReplyMaxnum() {
-		// TODO Auto-generated method stub
-		return dao.selectOfReplyMaxnum();
-	}
-	
-	@Override
-	public void updateRestepOfReply(int reply_regroup, int reply_restep) {
-		// TODO Auto-generated method stub
-		dao.updateRestepOfReply(reply_regroup, reply_restep);
-	}
-	
-	@Override
 	public List<ReplyDto> selectOfReply() {
 		// TODO Auto-generated method stub
 		return dao.selectOfReply();
+	}
+	
+	@Override
+	public void deleteOfReply(int reply_num) {
+		// TODO Auto-generated method stub
+		dao.deleteOfReply(reply_num);
 	}
 }

@@ -1,5 +1,6 @@
 package studyfeed.data;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,8 +24,18 @@ public class StudyFeedService implements StudyFeedServiceInter {
 		return dao.maxNumOfStudyFeed();
 	}
 	@Override
-	public List<StudyFeedDto> selectOfStudyFeedList(int studyfeed_studygroup_num) {
+	public List<StudyFeedDto> selectOfStudyFeedList(HashMap<String, Integer> map) {
 		// TODO Auto-generated method stub
-		return dao.selectOfStudyFeedList(studyfeed_studygroup_num);
+		return dao.selectOfStudyFeedList(map);
+	}
+	@Override
+	public void updateOfStudyFeed(StudyFeedDto dto) {
+		// TODO Auto-generated method stub
+		dao.updateOfStudyFeed(dto);
+	}
+	@Override
+	public void deleteOfStudyFeed(int studyfeed_num) {
+		// TODO Auto-generated method stub
+		dao.deleteOfStudyFeed(studyfeed_num);
 	}
 }

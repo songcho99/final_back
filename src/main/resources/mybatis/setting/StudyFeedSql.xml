@@ -25,12 +25,20 @@
 		studyfeed_content, studyfeed_writeday) 
 		VALUES (#{studyfeed_studygroup_num}, #{studyfeed_member_num}, #{studyfeed_content}, now())
 	</insert>
-	<select id="selectOfStudyFeedList" parameterType="int" resultType="studyfeeddto">
+	<select id="selectOfStudyFeedList" parameterType="HashMap" resultType="studyfeeddto">
 		SELECT a.member_name, a.member_profile, b.*
 		FROM member as a LEFT JOIN studyfeed as b 
 		ON a.member_num = b.studyfeed_member_num 
-        WHERE studyfeed_num IS NOT NULL 
-        AND studyfeed_studygroup_num = #{studyfeed_studygroup_num}
-		ORDER BY b.studyfeed_num DESC;
+        WHERE b.studyfeed_num IS NOT NULL 
+        AND b.studyfeed_studygroup_num = #{studyfeed_studygroup_num} 
+		ORDER BY b.studyfeed_num DESC
+        LIMIT 3 OFFSET #{offset}
 	</select>
+	<update id="updateOfStudyFeed" parameterType="studyfeeddto">
+		UPDATE studyfeed SET studyfeed_content = #{studyfeed_content} 
+		WHERE studyfeed_num = #{studyfeed_num}
+	</update>
+	<delete id="deleteOfStudyFeed" parameterType="int">
+		DELETE FROM studyfeed WHERE studyfeed_num = #{studyfeed_num}
+	</delete>
 </mapper>

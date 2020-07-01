@@ -126,5 +126,15 @@ public class MemberDao extends SqlSessionDaoSupport implements MemberDaoInter{
 		return getSqlSession().selectList("allOfMember", map);
 	}
 
+	@Override
+	public void updateType(int member_num, String member_type) {
+		// TODO Auto-generated method stub
+		Map<String, Object> map=new HashMap<String, Object>();
+		map.put("member_num", member_num);
+		map.put("member_type",member_type);
+		getSqlSession().update("updateTypeOfMember", map);
+	}
+	
+
 
 }

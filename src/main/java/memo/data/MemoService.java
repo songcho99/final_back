@@ -43,4 +43,16 @@ public class MemoService implements MemoServiceInter{
 		dao.deleteMemo(memo_num);
 	}
 
+	@Override
+	public MemoDto selectOneMemo(int memo_num) {
+		// TODO Auto-generated method stub
+		return dao.selectOneMemo(memo_num);
+	}
+
+	@Override
+	public void updateMemo(MemoDto memodto) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

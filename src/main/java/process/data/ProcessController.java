@@ -149,12 +149,27 @@ public class ProcessController {
 			
 		return maxnum;
 	}
-	
+
 	@RequestMapping(value="/process/list",method=RequestMethod.POST)
 	public List<ProcessListDto> getAllProcess(){
 		System.out.println("react >> getAllProcess");
 		
 		return service.getAllProcess();
+		
+	}
+	
+	@RequestMapping(value="/process/mainlist",method=RequestMethod.GET)
+	public Map<String,List<ProcessListDto>> getMainAllProcess(){
+		System.out.println("react >> getAllMainProcess");
+	
+		Map<String,List<ProcessListDto>> map = new HashMap<String,List<ProcessListDto>>();
+		
+		map.put("all",service.getAllMainProcess(""));
+		map.put("bigdata",service.getAllMainProcess("빅데이터"));
+		map.put("cloud",service.getAllMainProcess("클라우드"));
+		map.put("ai",service.getAllMainProcess("인공지능"));
+		
+		return map;
 		
 	}
 	@RequestMapping(value="/process/detail",method=RequestMethod.GET)

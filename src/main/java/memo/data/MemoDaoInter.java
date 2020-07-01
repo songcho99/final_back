@@ -10,4 +10,6 @@ public interface MemoDaoInter {
 	public List<ProcessDto> getProcessList(int member_num);
 	public int getMemoMaxnum();
 	public void deleteMemo(int memo_num);
+	public MemoDto selectOneMemo(int memo_num);
+	public void updateMemo(MemoDto memodto);
 }

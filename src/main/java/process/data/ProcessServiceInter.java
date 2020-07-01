@@ -23,5 +23,6 @@ public interface ProcessServiceInter {
 	public void updateProcess(ProcessDto processdto);
 	public ProcessFilesDto getProcessImage(int processfiles_num);
 	public void deleteImage(int processfiles_num);
+	public List<ProcessListDto> getAllMainProcess(String process_type);
 
 }

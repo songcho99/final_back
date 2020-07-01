@@ -35,7 +35,7 @@ public class ProcessDao extends SqlSessionDaoSupport implements ProcessDaoInter{
 	@Override
 	public List<ProcessListDto> getAllProcess() {
 		// TODO Auto-generated method stub
-		Map<String,Integer> map = new HashMap<String,Integer>();
+		Map<String,Object> map = new HashMap<String,Object>();
 		map.put("start", 0);
 		map.put("end", 9);
 		
@@ -94,6 +94,16 @@ public class ProcessDao extends SqlSessionDaoSupport implements ProcessDaoInter{
 	public ProcessFilesDto getProcessImage(int processfiles_num) {
 		// TODO Auto-generated method stub
 		return getSqlSession().selectOne("getProcessImage",processfiles_num);
+	}
+
+	@Override
+	public List<ProcessListDto> getAllMainProcess(String process_type) {
+		// TODO Auto-generated method stub
+				Map<String,Object> map = new HashMap<String,Object>();
+				map.put("start", 0);
+				map.put("end", 9);
+				map.put("process_type",process_type);
+		return getSqlSession().selectList("getAllMainProcess",map);
 	}
 
 	

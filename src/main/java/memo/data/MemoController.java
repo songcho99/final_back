@@ -68,6 +68,17 @@ public class MemoController {
 		service.deleteMemo(memo_num);
 	}
 	
+	@GetMapping("/memo/updateform")
+	public MemoDto updateFormMemo(@RequestParam int memo_num)
+	{
+		
+		System.out.println("react >> updateform");
+		MemoDto memodto = service.selectOneMemo(memo_num);
+		
+		return memodto;
+		
+	}
+	
 	
 	@GetMapping("/memo/processlist")
 	public List<ProcessDto> getProcessList(@RequestParam int member_num)
@@ -80,4 +91,35 @@ public class MemoController {
 		return list;
 	}
 	
+	@RequestMapping(value="/memo/update",method=RequestMethod.POST)
+	public void updateMemo(HttpServletRequest request, @ModelAttribute MemoDto memodto) {
+		
+		System.out.println("react >> memo/update");
+		System.out.println(memodto);
+		
+		if(memodto.getMemo_file() != null)
+		{
+			MemoDto memodto2 = service.selectOneMemo(memodto.getMemo_num());
+			
+			String filename = memodto2.getMemo_filename();
+			String path = request.getSession().getServletContext().getRealPath("/WEB-INF/uploadfile");
+			
+			ManageFileClass mfc = new ManageFileClass();
+			mfc.deleteFile(filename, path);
+			
+			
+			Date date=new Date();
+		    SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMdd_HH_mm_ss");
+		    String today=sdf.format(date);
+		     
+		    String fileName=today+"_"+memodto.getMemo_file().getOriginalFilename();
+		    System.out.println(path);
+		    memodto.setMemo_filename(fileName);
+			mfc.insertOneFile(memodto.getMemo_file(), fileName, path);
+			
+		}
+		
+		service.updateMemo(memodto);
+		
+	}
 }

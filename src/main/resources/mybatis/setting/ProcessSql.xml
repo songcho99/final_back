@@ -7,9 +7,19 @@
 	<select id="selectProcessMaxnum" resultType="int">
 		select max(process_num) from process
 	</select>
-	<select id="getAllProcess" parameterType="HashMap" resultType="processlistdto">
+		<select id="getAllProcess" parameterType="HashMap" resultType="processlistdto">
 		select process_num,process_type,process_member_num,process_subject,process_intr,process_peoples,process_startdate,process_enddate,process_status,process_teacher,process_writeday,process_teachername,process_writer from process 
 		where 1=1
+		order by process_num desc
+		limit #{start},#{end}
+	</select>
+	<select id="getAllMainProcess" parameterType="HashMap" resultType="promaindto">
+		SELECT a.*,b.member_profile
+		FROM process a, member b
+		WHERE a.process_teacher = b.member_num
+		<if test="process_type!=null and process_type!=''">
+		and process_type = #{process_type}
+		</if>
 		order by process_num desc
 		limit #{start},#{end}
 	</select>

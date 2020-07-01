@@ -92,6 +92,12 @@ public class ProcessService implements ProcessServiceInter{
 		return dao.getProcessImage(processfiles_num);
 	}
 
+	@Override
+	public List<ProcessListDto> getAllMainProcess(String process_type) {
+		// TODO Auto-generated method stub
+		return dao.getAllMainProcess(process_type);
+	}
+
 
 	
 

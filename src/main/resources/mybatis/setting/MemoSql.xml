@@ -16,4 +16,10 @@
 	<delete id="deleteMemo" parameterType="int">
 		delete from memo where memo_num = #{memo_num}
 	</delete>
+	<update id="updateMemo" parameterType="memodto">
+		update memo set memo_subject=#{memo_subject},memo_content=#{memo_content},memo_filename=#{memo_filename} where memo_num = #{memo_num}
+	</update>
+	<select id="selectOneMemo" parameterType="int" resultType="memodto">
+		select * from memo where memo_num = #{memo_num}
+	</select>
 </mapper>

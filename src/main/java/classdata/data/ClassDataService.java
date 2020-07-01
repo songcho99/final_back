@@ -26,9 +26,9 @@ public class ClassDataService implements ClassDataServiceInter {
 	}
 
 	@Override
-	public List<ClassDataDto> AllClassData() {
+	public List<ClassDataDto> AllClassData(int process_num) {
 		// TODO Auto-generated method stub
-		return dao.AllClassData();
+		return dao.AllClassData(process_num);
 	}
 
 	@Override

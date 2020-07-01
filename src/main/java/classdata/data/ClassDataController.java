@@ -43,10 +43,10 @@ public class ClassDataController {
 	
 	//목록 출력
 	@GetMapping("/classdata/classdatalist")
-	public List<ClassDataDto> classdatalist()
+	public List<ClassDataDto> classdatalist(@RequestParam int process_num)
 	{
 		System.out.println("react>>classdatalist");
-		List<ClassDataDto> list=service.AllClassData();
+		List<ClassDataDto> list=service.AllClassData(process_num);
 		System.out.println(list);
 		return list;
 	}
@@ -79,9 +79,6 @@ public class ClassDataController {
 	{
 		System.out.println(dto);
 		
-		
-		  dto.setClassdata_processclass_num(0);
-		  
 		  System.out.println("react>>classdataInsert");
 		  service.insertClassData(dto);
 		  int maxnum= service.selectMaxNum();
@@ -127,7 +124,7 @@ public class ClassDataController {
 				service2.deleteclassDataFiles(dto.getClassdata_delfiles().get(i));
 			}
 		}else {
-			
+			System.out.println(dto.getClassdata_delfiles());
 		}
 		
 	}

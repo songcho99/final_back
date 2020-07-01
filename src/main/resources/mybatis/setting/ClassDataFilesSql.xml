@@ -5,7 +5,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="classdatafiles">
 	<insert id="insertOfClassDataFiles" parameterType="HashMap">
 		insert into
-		classdatafiles(
+		classdatafiles (
 		classdatafiles_classdata_num,classdatafiles_classdata_filename)
 		values
 		(#{classdatafiles_classdata_num},#{classdatafiles_classdata_filename})
@@ -13,10 +13,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<update id="updateOfClassDataFiles" parameterType="int">
 		update classdatafiles set classdatafiles_classdata_filename=#{classdatafiles_classdata_filename}
-		where classdatafiles_num=#{classdatafiles_classdata_filename}
+		where classdatafiles_num=#{classdatafiles_num}
 	</update>
 	
-	<delete id="deleteOfClassDataFiles" parameterType="int">
+	<delete id="deleteOfClassDataFiles" parameterType="String">
 		delete from classdatafiles where classdatafiles_classdata_filename=#{classdatafiles_classdata_filename}
 	</delete>
 	<select id="selectOneOfClassDataFiles" parameterType="int" resultType="String">

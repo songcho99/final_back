@@ -105,5 +105,11 @@ public class MemberService implements MemberServiceInter {
 		return dao.allOfMember(type,field, search);
 	}
 
+	@Override
+	public void updateType(int member_num, String member_type) {
+		// TODO Auto-generated method stub
+		dao.updateType(member_num, member_type);
+	}
+
 
 }

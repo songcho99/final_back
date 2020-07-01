@@ -37,6 +37,7 @@ $(function(){
 		    }).then(function(res){
 		    	if(res){
 		    		  location.href="/project/word/save2.do?content=<%=content%>&process_num=<%=process_num%>";
+		    		  
 					}
 				});
 			} else {

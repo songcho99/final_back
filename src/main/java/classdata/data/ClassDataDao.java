@@ -21,9 +21,9 @@ import org.springframework.stereotype.Repository;
 		}
 
 		@Override
-		public List<ClassDataDto> AllClassData() {
+		public List<ClassDataDto> AllClassData(int process_num) {
 			// TODO Auto-generated method stub
-			return getSqlSession().selectList("selectOfClassData");
+			return getSqlSession().selectList("selectOfClassData",process_num);
 		}
 
 		@Override

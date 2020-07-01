@@ -32,5 +32,7 @@ public interface MemberServiceInter {
 	public void updatePassword(String member_id, String member_password);
 	//회원관리 검색
 	public List<MemberDto> allOfMember(String type,String field,String search);
+	//회원타입 변경
+	public void updateType(int member_num, String member_type);
 
 }

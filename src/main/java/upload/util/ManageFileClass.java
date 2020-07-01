@@ -35,6 +35,28 @@ public class ManageFileClass {
 		}
 	}
 	
+	public void insertOneFile(MultipartFile uploadfile,String filename,String path)
+	{
+		File file = new File(path+"\\"+filename);
+		FileOutputStream fos = null;
+		try {
+			byte[] filedata = uploadfile.getBytes();
+			fos=new FileOutputStream(path+"\\"+filename);
+			fos.write(filedata);	
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			try {
+				fos.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+	
 	public void deleteFile(String filename, String path)
 	{
 		File file = new File(path+"\\"+filename);

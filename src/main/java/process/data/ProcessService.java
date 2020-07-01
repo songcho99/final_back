@@ -98,6 +98,12 @@ public class ProcessService implements ProcessServiceInter{
 		return dao.getAllMainProcess(process_type);
 	}
 
+	@Override
+	public List<ProcessDto> managerlist(int member_num) {
+		// TODO Auto-generated method stub
+		return dao.managerlist(member_num);
+	}
+
 
 	
 

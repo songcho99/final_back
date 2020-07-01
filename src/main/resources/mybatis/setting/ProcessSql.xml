@@ -53,4 +53,7 @@
 	<delete id="deleteImage" parameterType="int">
 		delete from processfiles where processfiles_num = #{processfiles_num}
 	</delete>
+	<select id="managerlist" parameterType="int" resultType="processdto">
+		select * from process where 1=1 and process_member_num = #{member_num}
+	</select>
 </mapper>

@@ -339,4 +339,10 @@ public class ProcessController {
 		
 	}
 	
+	@GetMapping("/process/managerlist")
+	public List<ProcessDto> managerlist(@RequestParam int member_num)
+	{
+		System.out.println("react >> managerlist");
+		return service.managerlist(member_num);	
+	}
 }

@@ -106,6 +106,12 @@ public class ProcessDao extends SqlSessionDaoSupport implements ProcessDaoInter{
 		return getSqlSession().selectList("getAllMainProcess",map);
 	}
 
+	@Override
+	public List<ProcessDto> managerlist(int member_num) {
+		// TODO Auto-generated method stub
+		return getSqlSession().selectList("managerlist", member_num);
+	}
+
 	
 
 	

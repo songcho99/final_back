@@ -23,6 +23,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import files.data.StudyFeedFilesDaoInter;
 import member.data.MemberDto;
 import reply.data.ReplyServiceInter;
+import study.data.StudyServiceInter;
 import studygroup.data.StudyGroupServiceInter;
 
 @RestController
@@ -40,16 +41,23 @@ public class StudyFeedController {
 	@Autowired
 	private ReplyServiceInter replyservice;
 	
+	@Autowired
+	private StudyServiceInter studyservice;
+	
 	@GetMapping("/studyfeed/member")
 	public Map<String, Object> getStudyMember(@RequestParam int studyfeed_studygroup_num) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		List<MemberDto> memberlist = new ArrayList<MemberDto>();
 		
+	
+		
 		int membercount = groupservice.selectCountOfStudyGroupPeoples(studyfeed_studygroup_num);
 		memberlist = groupservice.selectOfStudyMember(studyfeed_studygroup_num);
 		
+		String subject=studyservice.selectOfStudyByNum(studyfeed_studygroup_num).getStudy_subject();
 		map.put("membercount", membercount);
 		map.put("memberlist", memberlist);
+		map.put("subject",subject);
 		
 		return map;
 	}
@@ -68,7 +76,7 @@ public class StudyFeedController {
 			}
 			filesdao.insertFile(request, dto.getUploadfile(), maxNum);
 		}
-		System.out.println("피드 추가");
+		System.out.println("�뵾�뱶 異붽�");
 	}
 	
 	@GetMapping("/studyfeed/feedlist")
@@ -98,7 +106,7 @@ public class StudyFeedController {
 	@DeleteMapping("/studyfeed/filedelete")
 	public void selectStudyFeedFile(@RequestParam String studyfeedfiles_studyfeed_filename) {
 		filesdao.deleteFile(studyfeedfiles_studyfeed_filename);
-		System.out.println("파일 삭제");
+		System.out.println("�뙆�씪 �궘�젣");
 	}
 	
 	@RequestMapping(value="/studyfeed/update", consumes= {"multipart/form-data"},method = RequestMethod.POST)
@@ -115,7 +123,7 @@ public class StudyFeedController {
 			}
 			filesdao.insertFile(request, dto.getUploadfile(), maxNum);
 		}
-		System.out.println("피드 수정");
+		System.out.println("�뵾�뱶 �닔�젙");
 	}
 	
 	@DeleteMapping("/studyfeed/delete")
@@ -135,6 +143,6 @@ public class StudyFeedController {
 			}
 		}
 		service.deleteOfStudyFeed(studyfeed_num);
-		System.out.println("삭제 성공");
+		System.out.println("�궘�젣 �꽦怨�");
 	}
 }

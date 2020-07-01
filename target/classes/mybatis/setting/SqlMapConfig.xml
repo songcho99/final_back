@@ -24,6 +24,7 @@
 		<typeAlias type="files.data.ProcessFilesDto" alias="processfilesdto" />
 		<typeAlias type="review.data.ReviewDto" alias="reviewdto"/>
 		<typeAlias type="qna.data.QnaDto" alias="qnadto" />
+		<typeAlias type="process.data.ProcessMainListDto" alias="promaindto" />
 	</typeAliases>
 	<mappers>
 		<mapper resource="mybatis/setting/TestSql.xml"/>

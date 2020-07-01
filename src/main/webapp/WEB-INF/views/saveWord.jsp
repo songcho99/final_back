@@ -29,6 +29,12 @@
 		String content = request.getParameter("content");
 		String process_num = request.getParameter("process_num");
 		
+		String content2 = content.replace("*", "<");
+		content2 = content2.replace("@", ">");
+		
+		
+		System.out.println("워드 저장 부분 content : "+content2);
+		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		
 		Date date = new Date();
@@ -38,14 +44,14 @@
 		response.setHeader("Content-Type", "application/vnd.ms-excel");
 		response.setHeader("Content-Disposition", "attachment; filename="+process_num+"_"+ now + ".hwp");
 		response.setHeader("Content-Description", "JSP Generated Data");
-			
+		
 	%>
 	<script>
 		self.opener = self;
 		window.close();
 	</script>
 
-	<div>${content}</div>
+	<div><%=content2 %></div>
 	
 </body>
 </html>

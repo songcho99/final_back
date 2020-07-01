@@ -13,6 +13,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,9 +22,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 
-
-@RestController
 @CrossOrigin
+@RestController
 public class ObjectController {
 	
 	@GetMapping("/word/save")
@@ -31,7 +31,6 @@ public class ObjectController {
 	{
 		System.out.println("react >> word");
 
-		System.out.println("content:"+content);
 		//content=content.replaceAll("&", "<");
 		//content=content.replaceAll("*", ">");
 
@@ -52,18 +51,14 @@ public class ObjectController {
 		classcontent = str2;
 		System.out.println("str2:"+str2);
 		*/
-		
-		
-		
-		
 		//   try {
 		//	str2 = URLEncoder.encode(str2, "UTF-8");
 		//} catch (UnsupportedEncodingException e) {
 		//	// TODO Auto-generated catch block
 		//	e.printStackTrace();
 		//}
-		ModelAndView model = new ModelAndView();
 		
+		ModelAndView model = new ModelAndView();
 		model.addObject("content", content);
 		model.addObject("process_num", process_num);
 		
@@ -74,7 +69,6 @@ public class ObjectController {
 	@GetMapping("/word/save2")
 	public ModelAndView saveWord2(@RequestParam String content,@RequestParam String process_num)
 	{
-		
 		System.out.println("react >> word2");
 		/*
 		 * System.out.println("save2¸Þ¼­µå content:"+content);

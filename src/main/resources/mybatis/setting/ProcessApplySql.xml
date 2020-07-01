@@ -12,6 +12,7 @@ b.process_subject processapply_process_subject,c.member_name processapply_member
 from processapply a, process b,member c
 where a.processapply_process_num = b.process_num
 and a.processapply_member_num = c.member_num
+and c.member_type = '일반'
 and b.process_member_num = #{member_num}
 	</select>
 	<select id="selectProcessApply" parameterType="int" resultType="processapplydto">

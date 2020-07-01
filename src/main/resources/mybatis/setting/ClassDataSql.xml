@@ -9,15 +9,15 @@
 	</insert>
 	
 	<select id="selectClassDataMaxnum" resultType="int">
-		select count(*) from classdata
+		select max(classdata_num) from classdata
 	</select>
 	
 	<select id="selectOneOfClassData" parameterType="int" resultType="classdatadto">
 		select * from classdata where classdata_num=#{classdata_num}
 	</select>
 	
-	<select id="selectOfClassData" resultType="classdatadto">
-		select * from classdata order by classdata_num desc
+	<select id="selectOfClassData" parameterType="int" resultType="classdatadto">
+		select * from classdata where classdata_processclass_num = #{process_num} order by classdata_num desc
 	</select>
 	
 	<update id="updateOfClassData" parameterType="classdatadto">

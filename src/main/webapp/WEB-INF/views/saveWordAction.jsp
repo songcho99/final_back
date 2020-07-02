@@ -23,16 +23,16 @@
 	%>
 $(function(){
 	swal({
-		  title: "Are you sure?",
-		  text: "Once deleted, you will not be able to recover this imaginary file!",
-		  icon: "warning",
+		  title: "강의를 저장하시겠습니까?",
+		  text: "",
+		  icon: "success",
 		  buttons: true,
 		  dangerMode: true,
 		})
 		.then(function(willDelete) {
 		  if (willDelete) {
 		
-			  swal("Poof! Your imaginary file has been deleted!", {
+			  swal("수업 내용이 저장되었습니다!", {
 		      icon: "success",
 		    }).then(function(res){
 		    	if(res){
